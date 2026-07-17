@@ -1,0 +1,86 @@
+{
+  "name": "unifyport/sdk",
+  "description": "Official PHP SDK for the UnifyPort Device API.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "unifyport",
+    "sdk",
+    "device-api",
+    "php",
+    "psr-18"
+  ],
+  "require": {
+    "php": "^8.2",
+    "ext-ctype": "*",
+    "ext-json": "*",
+    "psr/http-client": "^1.0",
+    "psr/http-factory": "^1.0",
+    "psr/http-message": "^1.1 || ^2.0"
+  },
+  "require-dev": {
+    "nyholm/psr7": "^1.8",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^11.5",
+    "squizlabs/php_codesniffer": "^3.13",
+    "symfony/yaml": "^6.4 || ^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "UnifyPort\\Sdk\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "UnifyPort\\Sdk\\Tests\\": "tests/"
+    }
+  },
+  "suggest": {
+    "guzzlehttp/guzzle": "A PSR-18 HTTP client implementation for applications using Guzzle.",
+    "nyholm/psr7": "A PSR-17 request and stream factory implementation."
+  },
+  "scripts": {
+    "generate": "php scripts/generate.php",
+    "generate:check": "php scripts/generate.php --check",
+    "parity:check": "php scripts/check-node-parity.php",
+    "lint": "phpcs",
+    "lint:fix": "phpcbf",
+    "analyse": "phpstan analyse --no-progress --memory-limit=512M",
+    "test": "phpunit",
+    "examples:check": "php scripts/check-examples.php",
+    "public:check": "php scripts/check-public.php",
+    "archive:check": "php scripts/check-archive.php",
+    "check": [
+      "@generate:check",
+      "@lint",
+      "@analyse",
+      "@test",
+      "@examples:check",
+      "@public:check",
+      "@archive:check"
+    ]
+  },
+  "archive": {
+    "exclude": [
+      "/.DS_Store",
+      "/.env",
+      "/.env.*",
+      "!/.env.example",
+      "/.idea",
+      "/.phpunit.cache",
+      "/.vscode",
+      "/build",
+      "/coverage",
+      "/composer.phar",
+      "/phpunit.xml",
+      "/vendor",
+      "/*.key",
+      "/*.log",
+      "/*.pem"
+    ]
+  },
+  "config": {
+    "allow-plugins": {},
+    "sort-packages": true
+  }
+}

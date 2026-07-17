@@ -1,0 +1,1455 @@
+{
+    "schemaVersion": 1,
+    "nodeSdk": {
+        "package": "@unifyport/sdk-node",
+        "version": "0.1.2",
+        "repository": "https://github.com/Unify-Port/UnifyPort-SDK-Nodejs",
+        "commit": "a8e00abdf39abefd467491166dffb03a09e9e81d"
+    },
+    "contractSha256": "86a38f7d743b7e72c3a2c1521a9985cc61ac907f72712e671b70aa8d69734c44",
+    "operationCount": 64,
+    "schemaCount": 69,
+    "operations": {
+        "blockContact": {
+            "operationId": "blockContact",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/contacts/block",
+            "tag": "Contacts",
+            "summary": "封锁联系人",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "cancelAccountAuth": {
+            "operationId": "cancelAccountAuth",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/auth/cancel",
+            "tag": "Account Auth",
+            "summary": "取消授权流程",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "checkAccountQrAuth": {
+            "operationId": "checkAccountQrAuth",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/auth/qr/check",
+            "tag": "Account Auth",
+            "summary": "检查二维码授权结果",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": true,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "createAccount": {
+            "operationId": "createAccount",
+            "method": "POST",
+            "path": "/v1/accounts",
+            "tag": "Accounts",
+            "summary": "创建账号",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": true,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "createApiKey": {
+            "operationId": "createApiKey",
+            "method": "POST",
+            "path": "/v1/api-keys",
+            "tag": "API Keys",
+            "summary": "创建 API Key",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": true,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "createGroup": {
+            "operationId": "createGroup",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/groups/create",
+            "tag": "Groups",
+            "summary": "创建群组",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "createWebhookEndpoint": {
+            "operationId": "createWebhookEndpoint",
+            "method": "POST",
+            "path": "/v1/webhook-endpoints",
+            "tag": "Webhook Endpoints",
+            "summary": "创建 webhook endpoint",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": true,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "deactivateWebhookEndpoint": {
+            "operationId": "deactivateWebhookEndpoint",
+            "method": "POST",
+            "path": "/v1/webhook-endpoints/{endpoint_id}/deactivate",
+            "tag": "Webhook Endpoints",
+            "summary": "停用 webhook endpoint",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "endpoint_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "deleteAccount": {
+            "operationId": "deleteAccount",
+            "method": "DELETE",
+            "path": "/v1/accounts/{account_id}",
+            "tag": "Accounts",
+            "summary": "删除账号",
+            "authRequired": true,
+            "mutability": "destructive",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": false
+        },
+        "deleteConversationLabel": {
+            "operationId": "deleteConversationLabel",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/labels/delete",
+            "tag": "Conversations",
+            "summary": "删除会话标签",
+            "authRequired": true,
+            "mutability": "destructive",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "deleteWebhookEndpoint": {
+            "operationId": "deleteWebhookEndpoint",
+            "method": "DELETE",
+            "path": "/v1/webhook-endpoints/{endpoint_id}",
+            "tag": "Webhook Endpoints",
+            "summary": "删除 webhook endpoint",
+            "authRequired": true,
+            "mutability": "destructive",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "endpoint_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": false
+        },
+        "editMessage": {
+            "operationId": "editMessage",
+            "method": "POST",
+            "path": "/v1/messages/edit",
+            "tag": "Messages",
+            "summary": "编辑消息文本",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "getAccount": {
+            "operationId": "getAccount",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}",
+            "tag": "Accounts",
+            "summary": "获取账号详情",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": true,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "getAccountAuthState": {
+            "operationId": "getAccountAuthState",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/auth",
+            "tag": "Account Auth",
+            "summary": "获取账号授权状态",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": true,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "getContact": {
+            "operationId": "getContact",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/contacts/info",
+            "tag": "Contacts",
+            "summary": "获取联系人详情",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "contact_id",
+                    "required": true
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "getConversation": {
+            "operationId": "getConversation",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/conversations/info",
+            "tag": "Conversations",
+            "summary": "获取会话详情",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "conversation_id",
+                    "required": true
+                },
+                {
+                    "name": "type",
+                    "required": false
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "getGroup": {
+            "operationId": "getGroup",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/groups/info",
+            "tag": "Groups",
+            "summary": "获取群组详情",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "group_id",
+                    "required": true
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "getGroupInviteCode": {
+            "operationId": "getGroupInviteCode",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/groups/invite-code",
+            "tag": "Groups",
+            "summary": "获取群邀请链接或邀请码",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": true,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "group_id",
+                    "required": true
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "getWebhookEndpoint": {
+            "operationId": "getWebhookEndpoint",
+            "method": "GET",
+            "path": "/v1/webhook-endpoints/{endpoint_id}",
+            "tag": "Webhook Endpoints",
+            "summary": "获取 webhook endpoint",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "endpoint_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "getWorkspace": {
+            "operationId": "getWorkspace",
+            "method": "GET",
+            "path": "/v1/workspace",
+            "tag": "Workspace",
+            "summary": "获取当前 workspace",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "read",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "importAccountAuthSession": {
+            "operationId": "importAccountAuthSession",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/auth/session",
+            "tag": "Account Auth",
+            "summary": "导入会话授权",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": true,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "leaveGroup": {
+            "operationId": "leaveGroup",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/groups/leave",
+            "tag": "Groups",
+            "summary": "退出群组",
+            "authRequired": true,
+            "mutability": "destructive",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "listAccounts": {
+            "operationId": "listAccounts",
+            "method": "GET",
+            "path": "/v1/accounts",
+            "tag": "Accounts",
+            "summary": "列出账号",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listApiKeys": {
+            "operationId": "listApiKeys",
+            "method": "GET",
+            "path": "/v1/api-keys",
+            "tag": "API Keys",
+            "summary": "列出 API Key",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "read",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listContactBlocklist": {
+            "operationId": "listContactBlocklist",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/contacts/blocklist",
+            "tag": "Contacts",
+            "summary": "查询联系人黑名单",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listContacts": {
+            "operationId": "listContacts",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/contacts",
+            "tag": "Contacts",
+            "summary": "列出联系人",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "cursor",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "required": false
+                },
+                {
+                    "name": "q",
+                    "required": false
+                },
+                {
+                    "name": "updated_since",
+                    "required": false
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listConversationLabels": {
+            "operationId": "listConversationLabels",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/conversations/labels",
+            "tag": "Conversations",
+            "summary": "列出会话标签",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "cursor",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "required": false
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listConversationMembers": {
+            "operationId": "listConversationMembers",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/conversations/members",
+            "tag": "Conversations",
+            "summary": "列出会话成员",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "conversation_id",
+                    "required": true
+                },
+                {
+                    "name": "type",
+                    "required": false
+                },
+                {
+                    "name": "cursor",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "required": false
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listConversations": {
+            "operationId": "listConversations",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/conversations",
+            "tag": "Conversations",
+            "summary": "列出会话",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "type",
+                    "required": false
+                },
+                {
+                    "name": "cursor",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "required": false
+                },
+                {
+                    "name": "label_id",
+                    "required": false
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listGroupJoinRequests": {
+            "operationId": "listGroupJoinRequests",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/groups/join-requests",
+            "tag": "Groups",
+            "summary": "列出待审批入群申请",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "group_id",
+                    "required": true
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listGroups": {
+            "operationId": "listGroups",
+            "method": "GET",
+            "path": "/v1/accounts/{account_id}/groups",
+            "tag": "Groups",
+            "summary": "列出群组",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [
+                {
+                    "name": "cursor",
+                    "required": false
+                },
+                {
+                    "name": "limit",
+                    "required": false
+                }
+            ],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listProviderRegions": {
+            "operationId": "listProviderRegions",
+            "method": "GET",
+            "path": "/v1/providers/{provider}/regions",
+            "tag": "Providers",
+            "summary": "查询 provider 地区可用性",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "read",
+            "pathParameters": [
+                {
+                    "name": "provider",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "listWebhookEndpoints": {
+            "operationId": "listWebhookEndpoints",
+            "method": "GET",
+            "path": "/v1/webhook-endpoints",
+            "tag": "Webhook Endpoints",
+            "summary": "列出 webhook endpoint",
+            "authRequired": true,
+            "mutability": "read",
+            "retryable": true,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "markConversationRead": {
+            "operationId": "markConversationRead",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/read",
+            "tag": "Conversations",
+            "summary": "标记会话已读",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "markConversationUnread": {
+            "operationId": "markConversationUnread",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/unread",
+            "tag": "Conversations",
+            "summary": "标记会话未读",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "muteConversation": {
+            "operationId": "muteConversation",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/mute",
+            "tag": "Conversations",
+            "summary": "静音会话",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "pinConversation": {
+            "operationId": "pinConversation",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/pin",
+            "tag": "Conversations",
+            "summary": "置顶会话",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "pinMessage": {
+            "operationId": "pinMessage",
+            "method": "POST",
+            "path": "/v1/messages/pin",
+            "tag": "Messages",
+            "summary": "置顶或取消置顶消息",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "reactMessage": {
+            "operationId": "reactMessage",
+            "method": "POST",
+            "path": "/v1/messages/reaction",
+            "tag": "Messages",
+            "summary": "给消息加表情回应或取消回应",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "reconnectAccountRuntime": {
+            "operationId": "reconnectAccountRuntime",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/runtime/reconnect",
+            "tag": "Account Runtime",
+            "summary": "重连账号运行态",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "refreshAccountRuntime": {
+            "operationId": "refreshAccountRuntime",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/runtime/refresh",
+            "tag": "Account Runtime",
+            "summary": "刷新账号运行态",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "revokeMessage": {
+            "operationId": "revokeMessage",
+            "method": "POST",
+            "path": "/v1/messages/revoke",
+            "tag": "Messages",
+            "summary": "撤回消息",
+            "authRequired": true,
+            "mutability": "destructive",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "rotateApiKey": {
+            "operationId": "rotateApiKey",
+            "method": "POST",
+            "path": "/v1/api-keys/{key_id}/rotate",
+            "tag": "API Keys",
+            "summary": "轮换 API Key",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": true,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "key_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "sendMessage": {
+            "operationId": "sendMessage",
+            "method": "POST",
+            "path": "/v1/messages",
+            "tag": "Messages",
+            "summary": "发送消息",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": true,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "setContactNote": {
+            "operationId": "setContactNote",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/contacts/note",
+            "tag": "Contacts",
+            "summary": "设置或清空联系人备注",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "setConversationLabelMembers": {
+            "operationId": "setConversationLabelMembers",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/labels",
+            "tag": "Conversations",
+            "summary": "给会话打标或移除标签",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "setGroupJoinApprovalMode": {
+            "operationId": "setGroupJoinApprovalMode",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/groups/join-approval-mode",
+            "tag": "Groups",
+            "summary": "设置入群审批模式",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "startAccountAuth": {
+            "operationId": "startAccountAuth",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/auth/start",
+            "tag": "Account Auth",
+            "summary": "启动验证码类授权",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": true,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "startAccountQrAuth": {
+            "operationId": "startAccountQrAuth",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/auth/qr/start",
+            "tag": "Account Auth",
+            "summary": "启动二维码授权",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": true,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "startAccountRuntime": {
+            "operationId": "startAccountRuntime",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/runtime/start",
+            "tag": "Account Runtime",
+            "summary": "启动账号运行态",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "stopAccountRuntime": {
+            "operationId": "stopAccountRuntime",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/runtime/stop",
+            "tag": "Account Runtime",
+            "summary": "停止账号运行态",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "submitAccountAuthCode": {
+            "operationId": "submitAccountAuthCode",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/auth/code",
+            "tag": "Account Auth",
+            "summary": "提交验证码",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": true,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "submitAccountAuthPassword": {
+            "operationId": "submitAccountAuthPassword",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/auth/password",
+            "tag": "Account Auth",
+            "summary": "提交二次密码",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": true,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": false,
+            "hasSuccessContent": true
+        },
+        "unblockContact": {
+            "operationId": "unblockContact",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/contacts/unblock",
+            "tag": "Contacts",
+            "summary": "解封联系人",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "unmuteConversation": {
+            "operationId": "unmuteConversation",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/unmute",
+            "tag": "Conversations",
+            "summary": "取消静音会话",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "unpinConversation": {
+            "operationId": "unpinConversation",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/unpin",
+            "tag": "Conversations",
+            "summary": "取消置顶会话",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "updateAccount": {
+            "operationId": "updateAccount",
+            "method": "PATCH",
+            "path": "/v1/accounts/{account_id}",
+            "tag": "Accounts",
+            "summary": "更新账号",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": true,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "updateApiKeyStatus": {
+            "operationId": "updateApiKeyStatus",
+            "method": "PATCH",
+            "path": "/v1/api-keys/{key_id}",
+            "tag": "API Keys",
+            "summary": "更新 API Key 状态",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "write",
+            "pathParameters": [
+                {
+                    "name": "key_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "updateGroupInfo": {
+            "operationId": "updateGroupInfo",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/groups/update-info",
+            "tag": "Groups",
+            "summary": "修改群信息",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "updateGroupJoinRequests": {
+            "operationId": "updateGroupJoinRequests",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/groups/join-requests/update",
+            "tag": "Groups",
+            "summary": "处理入群申请",
+            "authRequired": true,
+            "mutability": "destructive",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "updateGroupMembers": {
+            "operationId": "updateGroupMembers",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/groups/members",
+            "tag": "Groups",
+            "summary": "管理群成员",
+            "authRequired": true,
+            "mutability": "destructive",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "updateWebhookEndpoint": {
+            "operationId": "updateWebhookEndpoint",
+            "method": "PATCH",
+            "path": "/v1/webhook-endpoints/{endpoint_id}",
+            "tag": "Webhook Endpoints",
+            "summary": "更新 webhook endpoint",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": true,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "endpoint_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "updateWorkspace": {
+            "operationId": "updateWorkspace",
+            "method": "PATCH",
+            "path": "/v1/workspace",
+            "tag": "Workspace",
+            "summary": "更新当前 workspace",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        },
+        "upsertConversationLabel": {
+            "operationId": "upsertConversationLabel",
+            "method": "POST",
+            "path": "/v1/accounts/{account_id}/conversations/labels/upsert",
+            "tag": "Conversations",
+            "summary": "新建或更新会话标签",
+            "authRequired": true,
+            "mutability": "write",
+            "retryable": false,
+            "secretInput": false,
+            "secretOutput": false,
+            "mcpExposure": "never",
+            "pathParameters": [
+                {
+                    "name": "account_id",
+                    "required": true
+                }
+            ],
+            "queryParameters": [],
+            "requestBodyRequired": true,
+            "hasSuccessContent": true
+        }
+    }
+}
