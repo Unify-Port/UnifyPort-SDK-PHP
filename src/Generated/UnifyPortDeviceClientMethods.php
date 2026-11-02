@@ -13,10 +13,12 @@ use UnifyPort\Sdk\Api\AccountAuthApi;
 use UnifyPort\Sdk\Api\AccountRuntimeApi;
 use UnifyPort\Sdk\Api\AccountsApi;
 use UnifyPort\Sdk\Api\ApiKeysApi;
+use UnifyPort\Sdk\Api\CallsApi;
 use UnifyPort\Sdk\Api\ContactsApi;
 use UnifyPort\Sdk\Api\ConversationsApi;
 use UnifyPort\Sdk\Api\GroupsApi;
 use UnifyPort\Sdk\Api\MessagesApi;
+use UnifyPort\Sdk\Api\PostsApi;
 use UnifyPort\Sdk\Api\ProvidersApi;
 use UnifyPort\Sdk\Api\WebhookEndpointsApi;
 use UnifyPort\Sdk\Api\WorkspaceApi;
@@ -32,10 +34,18 @@ use UnifyPort\Sdk\RequestExecutionOptions;
  * @phpstan-import-type CancelAccountAuthOperationResponse from ApiTypes
  * @phpstan-import-type CheckAccountQrAuthOperationRequest from ApiTypes
  * @phpstan-import-type CheckAccountQrAuthOperationResponse from ApiTypes
+ * @phpstan-import-type ConfirmAccountPasskeyOperationRequest from ApiTypes
+ * @phpstan-import-type ConfirmAccountPasskeyOperationResponse from ApiTypes
  * @phpstan-import-type CreateAccountOperationRequest from ApiTypes
  * @phpstan-import-type CreateAccountOperationResponse from ApiTypes
+ * @phpstan-import-type CreateAccountAuthSessionOperationRequest from ApiTypes
+ * @phpstan-import-type CreateAccountAuthSessionOperationResponse from ApiTypes
  * @phpstan-import-type CreateApiKeyOperationRequest from ApiTypes
  * @phpstan-import-type CreateApiKeyOperationResponse from ApiTypes
+ * @phpstan-import-type CreateCallOperationRequest from ApiTypes
+ * @phpstan-import-type CreateCallOperationResponse from ApiTypes
+ * @phpstan-import-type CreateContactOperationRequest from ApiTypes
+ * @phpstan-import-type CreateContactOperationResponse from ApiTypes
  * @phpstan-import-type CreateGroupOperationRequest from ApiTypes
  * @phpstan-import-type CreateGroupOperationResponse from ApiTypes
  * @phpstan-import-type CreateWebhookEndpointOperationRequest from ApiTypes
@@ -54,18 +64,28 @@ use UnifyPort\Sdk\RequestExecutionOptions;
  * @phpstan-import-type GetAccountOperationResponse from ApiTypes
  * @phpstan-import-type GetAccountAuthStateOperationRequest from ApiTypes
  * @phpstan-import-type GetAccountAuthStateOperationResponse from ApiTypes
+ * @phpstan-import-type GetAccountOperationOperationRequest from ApiTypes
+ * @phpstan-import-type GetAccountOperationOperationResponse from ApiTypes
+ * @phpstan-import-type GetActiveCallOperationRequest from ApiTypes
+ * @phpstan-import-type GetActiveCallOperationResponse from ApiTypes
  * @phpstan-import-type GetContactOperationRequest from ApiTypes
  * @phpstan-import-type GetContactOperationResponse from ApiTypes
+ * @phpstan-import-type GetContactMembershipOperationRequest from ApiTypes
+ * @phpstan-import-type GetContactMembershipOperationResponse from ApiTypes
  * @phpstan-import-type GetConversationOperationRequest from ApiTypes
  * @phpstan-import-type GetConversationOperationResponse from ApiTypes
  * @phpstan-import-type GetGroupOperationRequest from ApiTypes
  * @phpstan-import-type GetGroupOperationResponse from ApiTypes
  * @phpstan-import-type GetGroupInviteCodeOperationRequest from ApiTypes
  * @phpstan-import-type GetGroupInviteCodeOperationResponse from ApiTypes
+ * @phpstan-import-type GetPostOperationRequest from ApiTypes
+ * @phpstan-import-type GetPostOperationResponse from ApiTypes
  * @phpstan-import-type GetWebhookEndpointOperationRequest from ApiTypes
  * @phpstan-import-type GetWebhookEndpointOperationResponse from ApiTypes
  * @phpstan-import-type GetWorkspaceOperationRequest from ApiTypes
  * @phpstan-import-type GetWorkspaceOperationResponse from ApiTypes
+ * @phpstan-import-type HangupCallOperationRequest from ApiTypes
+ * @phpstan-import-type HangupCallOperationResponse from ApiTypes
  * @phpstan-import-type ImportAccountAuthSessionOperationRequest from ApiTypes
  * @phpstan-import-type ImportAccountAuthSessionOperationResponse from ApiTypes
  * @phpstan-import-type LeaveGroupOperationRequest from ApiTypes
@@ -88,6 +108,10 @@ use UnifyPort\Sdk\RequestExecutionOptions;
  * @phpstan-import-type ListGroupJoinRequestsOperationResponse from ApiTypes
  * @phpstan-import-type ListGroupsOperationRequest from ApiTypes
  * @phpstan-import-type ListGroupsOperationResponse from ApiTypes
+ * @phpstan-import-type ListPostCommentsOperationRequest from ApiTypes
+ * @phpstan-import-type ListPostCommentsOperationResponse from ApiTypes
+ * @phpstan-import-type ListPostsOperationRequest from ApiTypes
+ * @phpstan-import-type ListPostsOperationResponse from ApiTypes
  * @phpstan-import-type ListProviderRegionsOperationRequest from ApiTypes
  * @phpstan-import-type ListProviderRegionsOperationResponse from ApiTypes
  * @phpstan-import-type ListWebhookEndpointsOperationRequest from ApiTypes
@@ -108,6 +132,10 @@ use UnifyPort\Sdk\RequestExecutionOptions;
  * @phpstan-import-type ReconnectAccountRuntimeOperationResponse from ApiTypes
  * @phpstan-import-type RefreshAccountRuntimeOperationRequest from ApiTypes
  * @phpstan-import-type RefreshAccountRuntimeOperationResponse from ApiTypes
+ * @phpstan-import-type ReplyPostCommentOperationRequest from ApiTypes
+ * @phpstan-import-type ReplyPostCommentOperationResponse from ApiTypes
+ * @phpstan-import-type RequestConversationHistoryOperationRequest from ApiTypes
+ * @phpstan-import-type RequestConversationHistoryOperationResponse from ApiTypes
  * @phpstan-import-type RevokeMessageOperationRequest from ApiTypes
  * @phpstan-import-type RevokeMessageOperationResponse from ApiTypes
  * @phpstan-import-type RotateApiKeyOperationRequest from ApiTypes
@@ -132,6 +160,8 @@ use UnifyPort\Sdk\RequestExecutionOptions;
  * @phpstan-import-type SubmitAccountAuthCodeOperationResponse from ApiTypes
  * @phpstan-import-type SubmitAccountAuthPasswordOperationRequest from ApiTypes
  * @phpstan-import-type SubmitAccountAuthPasswordOperationResponse from ApiTypes
+ * @phpstan-import-type SubmitAccountPasskeyResponseOperationRequest from ApiTypes
+ * @phpstan-import-type SubmitAccountPasskeyResponseOperationResponse from ApiTypes
  * @phpstan-import-type UnblockContactOperationRequest from ApiTypes
  * @phpstan-import-type UnblockContactOperationResponse from ApiTypes
  * @phpstan-import-type UnmuteConversationOperationRequest from ApiTypes
@@ -197,6 +227,19 @@ trait UnifyPortDeviceClientMethods
     }
 
     /**
+     * 确认 Passkey 授权
+     *
+     * @param ConfirmAccountPasskeyOperationRequest|OperationRequest $request
+     * @return ApiResult<ConfirmAccountPasskeyOperationResponse>
+     */
+    public function confirmAccountPasskey(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('confirmAccountPasskey', $request, $execution);
+    }
+
+    /**
      * 创建账号
      *
      * @param CreateAccountOperationRequest|OperationRequest $request
@@ -210,6 +253,19 @@ trait UnifyPortDeviceClientMethods
     }
 
     /**
+     * 创建 Provider 授权会话
+     *
+     * @param CreateAccountAuthSessionOperationRequest|OperationRequest $request
+     * @return ApiResult<CreateAccountAuthSessionOperationResponse>
+     */
+    public function createAccountAuthSession(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('createAccountAuthSession', $request, $execution);
+    }
+
+    /**
      * 创建 API Key
      *
      * @param CreateApiKeyOperationRequest|OperationRequest $request
@@ -220,6 +276,32 @@ trait UnifyPortDeviceClientMethods
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->executeOperation('createApiKey', $request, $execution);
+    }
+
+    /**
+     * 准备主动通话
+     *
+     * @param CreateCallOperationRequest|OperationRequest $request
+     * @return ApiResult<CreateCallOperationResponse>
+     */
+    public function createCall(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('createCall', $request, $execution);
+    }
+
+    /**
+     * 添加联系人
+     *
+     * @param CreateContactOperationRequest|OperationRequest $request
+     * @return ApiResult<CreateContactOperationResponse>
+     */
+    public function createContact(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('createContact', $request, $execution);
     }
 
     /**
@@ -340,6 +422,32 @@ trait UnifyPortDeviceClientMethods
     }
 
     /**
+     * 查询账号计费操作
+     *
+     * @param GetAccountOperationOperationRequest|OperationRequest $request
+     * @return ApiResult<GetAccountOperationOperationResponse>
+     */
+    public function getAccountOperation(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('getAccountOperation', $request, $execution);
+    }
+
+    /**
+     * 查询账号当前活动通话
+     *
+     * @param GetActiveCallOperationRequest|OperationRequest $request
+     * @return ApiResult<GetActiveCallOperationResponse>
+     */
+    public function getActiveCall(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('getActiveCall', $request, $execution);
+    }
+
+    /**
      * 获取联系人详情
      *
      * @param GetContactOperationRequest|OperationRequest $request
@@ -350,6 +458,19 @@ trait UnifyPortDeviceClientMethods
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->executeOperation('getContact', $request, $execution);
+    }
+
+    /**
+     * 查询联系人是否在联系人列表中
+     *
+     * @param GetContactMembershipOperationRequest|OperationRequest $request
+     * @return ApiResult<GetContactMembershipOperationResponse>
+     */
+    public function getContactMembership(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('getContactMembership', $request, $execution);
     }
 
     /**
@@ -392,6 +513,19 @@ trait UnifyPortDeviceClientMethods
     }
 
     /**
+     * 获取帖子详情
+     *
+     * @param GetPostOperationRequest|OperationRequest $request
+     * @return ApiResult<GetPostOperationResponse>
+     */
+    public function getPost(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('getPost', $request, $execution);
+    }
+
+    /**
      * 获取 webhook endpoint
      *
      * @param GetWebhookEndpointOperationRequest|OperationRequest $request
@@ -415,6 +549,19 @@ trait UnifyPortDeviceClientMethods
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->executeOperation('getWorkspace', $request, $execution);
+    }
+
+    /**
+     * 挂断指定通话
+     *
+     * @param HangupCallOperationRequest|OperationRequest $request
+     * @return ApiResult<HangupCallOperationResponse>
+     */
+    public function hangupCall(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('hangupCall', $request, $execution);
     }
 
     /**
@@ -561,6 +708,32 @@ trait UnifyPortDeviceClientMethods
     }
 
     /**
+     * 列出帖子的一级评论
+     *
+     * @param ListPostCommentsOperationRequest|OperationRequest $request
+     * @return ApiResult<ListPostCommentsOperationResponse>
+     */
+    public function listPostComments(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('listPostComments', $request, $execution);
+    }
+
+    /**
+     * 列出本账号帖子
+     *
+     * @param ListPostsOperationRequest|OperationRequest $request
+     * @return ApiResult<ListPostsOperationResponse>
+     */
+    public function listPosts(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('listPosts', $request, $execution);
+    }
+
+    /**
      * 查询 provider 地区可用性
      *
      * @param ListProviderRegionsOperationRequest|OperationRequest $request
@@ -688,6 +861,32 @@ trait UnifyPortDeviceClientMethods
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->executeOperation('refreshAccountRuntime', $request, $execution);
+    }
+
+    /**
+     * 发布一级评论或回复一级评论
+     *
+     * @param ReplyPostCommentOperationRequest|OperationRequest $request
+     * @return ApiResult<ReplyPostCommentOperationResponse>
+     */
+    public function replyPostComment(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('replyPostComment', $request, $execution);
+    }
+
+    /**
+     * 请求补拉会话历史消息
+     *
+     * @param RequestConversationHistoryOperationRequest|OperationRequest $request
+     * @return ApiResult<RequestConversationHistoryOperationResponse>
+     */
+    public function requestConversationHistory(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('requestConversationHistory', $request, $execution);
     }
 
     /**
@@ -844,6 +1043,19 @@ trait UnifyPortDeviceClientMethods
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->executeOperation('submitAccountAuthPassword', $request, $execution);
+    }
+
+    /**
+     * 提交 Passkey 凭证响应
+     *
+     * @param SubmitAccountPasskeyResponseOperationRequest|OperationRequest $request
+     * @return ApiResult<SubmitAccountPasskeyResponseOperationResponse>
+     */
+    public function submitAccountPasskeyResponse(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->executeOperation('submitAccountPasskeyResponse', $request, $execution);
     }
 
     /**
@@ -1009,6 +1221,11 @@ trait UnifyPortDeviceClientMethods
         return new ApiKeysApi($this);
     }
 
+    public function calls(): CallsApi
+    {
+        return new CallsApi($this);
+    }
+
     public function groups(): GroupsApi
     {
         return new GroupsApi($this);
@@ -1027,6 +1244,11 @@ trait UnifyPortDeviceClientMethods
     public function messages(): MessagesApi
     {
         return new MessagesApi($this);
+    }
+
+    public function posts(): PostsApi
+    {
+        return new PostsApi($this);
     }
 
     public function workspace(): WorkspaceApi

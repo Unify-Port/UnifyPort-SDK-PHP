@@ -14,8 +14,9 @@ final class UnifyPortApiException extends UnifyPortException
         public readonly mixed $details = null,
         ?string $api = null,
         ?string $operationId = null,
+        public readonly ?string $numericCode = null,
     ) {
-        // PHP Exception::getCode() 是整数语义，服务端字符串 code 使用独立字段避免错误强转。
+        // 新增数字码放在参数末尾，保留既有位置调用；两类业务码均按字符串处理。
         parent::__construct($message, $api, $operationId);
     }
 }

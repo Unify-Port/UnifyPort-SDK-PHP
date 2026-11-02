@@ -21,6 +21,10 @@ use UnifyPort\Sdk\UnifyPortDeviceClient;
  * @phpstan-import-type CancelAccountAuthOperationResponse from ApiTypes
  * @phpstan-import-type CheckAccountQrAuthOperationRequest from ApiTypes
  * @phpstan-import-type CheckAccountQrAuthOperationResponse from ApiTypes
+ * @phpstan-import-type ConfirmAccountPasskeyOperationRequest from ApiTypes
+ * @phpstan-import-type ConfirmAccountPasskeyOperationResponse from ApiTypes
+ * @phpstan-import-type CreateAccountAuthSessionOperationRequest from ApiTypes
+ * @phpstan-import-type CreateAccountAuthSessionOperationResponse from ApiTypes
  * @phpstan-import-type GetAccountAuthStateOperationRequest from ApiTypes
  * @phpstan-import-type GetAccountAuthStateOperationResponse from ApiTypes
  * @phpstan-import-type ImportAccountAuthSessionOperationRequest from ApiTypes
@@ -33,6 +37,8 @@ use UnifyPort\Sdk\UnifyPortDeviceClient;
  * @phpstan-import-type SubmitAccountAuthCodeOperationResponse from ApiTypes
  * @phpstan-import-type SubmitAccountAuthPasswordOperationRequest from ApiTypes
  * @phpstan-import-type SubmitAccountAuthPasswordOperationResponse from ApiTypes
+ * @phpstan-import-type SubmitAccountPasskeyResponseOperationRequest from ApiTypes
+ * @phpstan-import-type SubmitAccountPasskeyResponseOperationResponse from ApiTypes
  */
 final readonly class AccountAuthApi
 {
@@ -64,6 +70,32 @@ final readonly class AccountAuthApi
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->client->checkAccountQrAuth($request, $execution);
+    }
+
+    /**
+     * 确认 Passkey 授权
+     *
+     * @param ConfirmAccountPasskeyOperationRequest|OperationRequest $request
+     * @return ApiResult<ConfirmAccountPasskeyOperationResponse>
+     */
+    public function confirmAccountPasskey(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->client->confirmAccountPasskey($request, $execution);
+    }
+
+    /**
+     * 创建 Provider 授权会话
+     *
+     * @param CreateAccountAuthSessionOperationRequest|OperationRequest $request
+     * @return ApiResult<CreateAccountAuthSessionOperationResponse>
+     */
+    public function createAccountAuthSession(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->client->createAccountAuthSession($request, $execution);
     }
 
     /**
@@ -142,5 +174,18 @@ final readonly class AccountAuthApi
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->client->submitAccountAuthPassword($request, $execution);
+    }
+
+    /**
+     * 提交 Passkey 凭证响应
+     *
+     * @param SubmitAccountPasskeyResponseOperationRequest|OperationRequest $request
+     * @return ApiResult<SubmitAccountPasskeyResponseOperationResponse>
+     */
+    public function submitAccountPasskeyResponse(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->client->submitAccountPasskeyResponse($request, $execution);
     }
 }

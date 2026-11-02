@@ -13,4 +13,4 @@ composer check
 
 所有公开行为变化都要增加离线测试。注释使用简短中文，只解释设计意图、兼容边界、外部限制或风险。
 
-提交前必须确认：只包含公开 Device API；不含 credential、真实数据、内部 host、私有文档和调试输出；中英文文档同步；已运行 `composer validate --strict`、`composer check`、`composer public:check`、`git diff --check`；同步 Node 时已运行 parity check；有意差异已记录。
+提交前必须确认：只包含公开 Device API；不含 credential、真实数据、内部 host、私有文档和调试输出；中英文文档同步；已运行 `composer validate --strict`、`composer check`、`composer public:check`、`git diff --check`；同步 Node 时已运行 `composer parity:check -- ../UnifyPort-SDK-Nodejs`；有意差异已记录。

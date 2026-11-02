@@ -35,6 +35,8 @@ use UnifyPort\Sdk\UnifyPortDeviceClient;
  * @phpstan-import-type MuteConversationOperationResponse from ApiTypes
  * @phpstan-import-type PinConversationOperationRequest from ApiTypes
  * @phpstan-import-type PinConversationOperationResponse from ApiTypes
+ * @phpstan-import-type RequestConversationHistoryOperationRequest from ApiTypes
+ * @phpstan-import-type RequestConversationHistoryOperationResponse from ApiTypes
  * @phpstan-import-type SetConversationLabelMembersOperationRequest from ApiTypes
  * @phpstan-import-type SetConversationLabelMembersOperationResponse from ApiTypes
  * @phpstan-import-type UnmuteConversationOperationRequest from ApiTypes
@@ -165,6 +167,19 @@ final readonly class ConversationsApi
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->client->pinConversation($request, $execution);
+    }
+
+    /**
+     * 请求补拉会话历史消息
+     *
+     * @param RequestConversationHistoryOperationRequest|OperationRequest $request
+     * @return ApiResult<RequestConversationHistoryOperationResponse>
+     */
+    public function requestConversationHistory(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->client->requestConversationHistory($request, $execution);
     }
 
     /**

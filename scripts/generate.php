@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Symfony\Component\Yaml\Yaml;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
+require __DIR__ . '/schema-types.php';
 
 const HTTP_METHODS = ['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace'];
 
@@ -16,7 +17,8 @@ $contractPath = $root . '/contracts/device.openapi.yaml';
 $policyPath = $root . '/parity/operation-policies.json';
 $sourcePath = $root . '/parity/source.json';
 
-$document = Yaml::parseFile($contractPath);
+// YAML 默认把裸 RFC3339 转为整数；保留协议字符串，避免生成示例把 occurred_at 变成 Unix 时间。
+$document = yamlProtocolValues(Yaml::parseFile($contractPath, Yaml::PARSE_DATETIME));
 $policies = json_decode((string) file_get_contents($policyPath), true, 64, JSON_THROW_ON_ERROR);
 $source = json_decode((string) file_get_contents($sourcePath), true, 64, JSON_THROW_ON_ERROR);
 if (!is_array($document) || !is_array($policies) || !is_array($source)) {
@@ -40,7 +42,9 @@ if (!is_array($schemas)) {
 $artifacts = [];
 $artifacts['src/Generated/OperationCatalog.php'] = generateOperationCatalog($operations);
 $artifacts['src/Generated/SchemaCatalog.php'] = generateSchemaCatalog($schemas);
-$artifacts['src/Generated/ApiTypes.php'] = generateApiTypes($schemas, $operations);
+$typing = typingDocument($document);
+$artifacts['src/Generated/ApiTypes.php'] = generateApiTypes($typing['components']['schemas'], $operations);
+$artifacts['tests/WebhookExamples.php'] = generateWebhookExamples($document);
 $artifacts['src/Generated/UnifyPortDeviceClientMethods.php'] = generateClientTrait($operations);
 foreach (groupByTag($operations) as $tag => $tagOperations) {
     $artifacts['src/Api/' . tagClass($tag) . '.php'] = generateResourceClass($tag, $tagOperations);
@@ -352,6 +356,8 @@ function generateSchemaCatalog(array $schemas): string
     return generatedHeader('contracts/device.openapi.yaml')
         . "namespace UnifyPort\\Sdk\\Generated;\n\n"
         . "use UnifyPort\\Sdk\\Exception\\UnifyPortConfigurationException;\n\n"
+        . "// 契约描述保持原文，生成常量不按软行长拆分字符串。\n"
+        . "// phpcs:disable Generic.Files.LineLength.TooLong\n"
         . "final class SchemaCatalog\n{\n"
         . "    /** @var array<string, array<string, mixed>> */\n"
         . '    private const SCHEMAS = ' . phpValue($schemas, 1) . ";\n\n"
@@ -511,6 +517,34 @@ function phpStanSchemaType(array $schema, string $direction): string
  */
 function phpStanSchemaTypeWithoutNullable(array $schema, string $direction): string
 {
+    if (($schema['x-sdk-never'] ?? false) === true) {
+        return 'never';
+    }
+    // oneOf/anyOf/allOf 的共同字段同时生效，不能让候选分支覆盖账号或消息的必填字段。
+    $parts = [];
+    $shared = $schema;
+    unset($shared['oneOf'], $shared['anyOf'], $shared['allOf']);
+    $hasComposition = isset($schema['oneOf']) || isset($schema['anyOf']) || isset($schema['allOf']);
+    if ($hasComposition) {
+        if (isset($shared['type']) || isset($shared['properties']) || isset($shared['$ref'])) {
+            $parts[] = phpStanSchemaTypeWithoutNullable($shared, $direction);
+        }
+        foreach (['oneOf', 'anyOf'] as $keyword) {
+            $variants = $schema[$keyword] ?? [];
+            if (is_array($variants) && $variants !== []) {
+                $types = [];
+                foreach ($variants as $variant) {
+                    $types[] = is_array($variant) ? phpStanSchemaType($variant, $direction) : 'mixed';
+                }
+                $parts[] = phpStanUnion($types);
+            }
+        }
+        foreach (is_array($schema['allOf'] ?? null) ? $schema['allOf'] : [] as $variant) {
+            $parts[] = is_array($variant) ? phpStanSchemaType($variant, $direction) : 'mixed';
+        }
+
+        return phpStanIntersection($parts);
+    }
     $ref = $schema['$ref'] ?? null;
     if (is_string($ref)) {
         return schemaAliasFromRef($ref, $direction);
@@ -526,28 +560,6 @@ function phpStanSchemaTypeWithoutNullable(array $schema, string $direction): str
             static fn (mixed $value): string => phpStanLiteral($value),
             $enum,
         )));
-    }
-
-    foreach (['oneOf', 'anyOf'] as $unionKeyword) {
-        $variants = $schema[$unionKeyword] ?? null;
-        if (is_array($variants) && $variants !== []) {
-            $types = [];
-            foreach ($variants as $variant) {
-                $types[] = is_array($variant) ? phpStanSchemaType($variant, $direction) : 'mixed';
-            }
-
-            return phpStanUnion($types);
-        }
-    }
-
-    $allOf = $schema['allOf'] ?? null;
-    if (is_array($allOf) && $allOf !== []) {
-        $types = [];
-        foreach ($allOf as $variant) {
-            $types[] = is_array($variant) ? phpStanSchemaType($variant, $direction) : 'mixed';
-        }
-
-        return phpStanIntersection($types);
     }
 
     $declaredType = $schema['type'] ?? null;
@@ -627,7 +639,7 @@ function phpStanObjectType(array $schema, string $direction): string
             '%s%s: %s',
             phpStanShapeKey($name),
             isset($requiredLookup[$name]) ? '' : '?',
-            is_array($property) ? phpStanSchemaType($property, $direction) : 'mixed',
+            is_array($property) ? phpStanSchemaType($property, $direction) : ($property === false ? 'never' : 'mixed'),
         );
     }
 
@@ -1053,4 +1065,55 @@ function phpValue(mixed $value, int $level = 0): string
     }
 
     return "[\n" . implode("\n", $lines) . "\n{$indent}]";
+}
+
+/** @param array<string, mixed> $document */
+function generateWebhookExamples(array $document): string
+{
+    $cases = [];
+    $types = [];
+    foreach ($document['webhooks'] as $name => $webhook) {
+        $content = $webhook['post']['requestBody']['content']['application/json'];
+        $type = schemaAliasFromRef($content['schema']['$ref'], 'output');
+        $examples = $content['examples'] ?? [];
+        if (isset($content['example'])) {
+            $examples['example'] = ['value' => $content['example']];
+        }
+        foreach ($examples as $example) {
+            if (array_key_exists('value', $example)) {
+                $cases[] = [$type, $example['value']];
+                $types[$type] = true;
+            }
+        }
+    }
+    $output = generatedHeader('contracts/device.openapi.yaml') . "namespace UnifyPort\\Sdk\\Tests;\n\n";
+    $output .= "// 公开契约示例同时作为静态类型回归，避免 Webhook 嵌套字段在生成时丢失。\n";
+    $output .= "/**\n";
+    foreach (array_keys($types) as $type) {
+        $output .= " * @phpstan-import-type " . $type . " from \\UnifyPort\\Sdk\\Generated\\ApiTypes\n";
+    }
+    $output .= " */\nfinal class WebhookExamples\n{\n";
+    foreach ($cases as $index => [$type, $body]) {
+        $output .= "    /** @return " . $type . " */\n";
+        $output .= "    public static function example" . $index . "(): array\n    {\n";
+        $output .= "        return " . phpValue($body, 2) . ";\n    }\n\n";
+    }
+    return rtrim($output) . "\n}\n";
+}
+
+function yamlProtocolValues(mixed $value): mixed
+{
+    if ($value instanceof DateTimeInterface) {
+        // 保留亚秒精度，格式化不能把 .123Z 的发生时间截断到整秒。
+        $fraction = rtrim($value->format('u'), '0');
+        $text = $value->format('Y-m-d\TH:i:s');
+        if ($fraction !== '') {
+            $text .= '.' . $fraction;
+        }
+        return str_replace('+00:00', 'Z', $text . $value->format('P'));
+    }
+    if (is_array($value)) {
+        return array_map('yamlProtocolValues', $value);
+    }
+    return $value;
 }

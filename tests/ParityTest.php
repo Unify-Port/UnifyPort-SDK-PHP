@@ -19,11 +19,11 @@ final class ParityTest extends TestCase
         $client = SdkFactory::client(new QueueHttpClient([new Response()]));
         $operations = OperationCatalog::all();
 
-        self::assertCount(64, $operations);
+        self::assertCount(78, $operations);
         foreach (array_keys($operations) as $operationId) {
             self::assertTrue(method_exists($client, $operationId), $operationId);
         }
-        self::assertCount(69, SchemaCatalog::all());
+        self::assertCount(218, SchemaCatalog::all());
     }
 
     public function testResourceAndPolicyCountsMatchNodeBaseline(): void
@@ -52,27 +52,29 @@ final class ParityTest extends TestCase
 
         self::assertSame([
             'API Keys' => 4,
-            'Account Auth' => 8,
+            'Account Auth' => 11,
             'Account Runtime' => 4,
-            'Accounts' => 5,
-            'Contacts' => 6,
-            'Conversations' => 13,
+            'Accounts' => 6,
+            'Calls' => 3,
+            'Contacts' => 8,
+            'Conversations' => 14,
             'Groups' => 10,
             'Messages' => 5,
+            'Posts' => 4,
             'Providers' => 1,
             'Webhook Endpoints' => 6,
             'Workspace' => 2,
         ], $tags);
         self::assertSame([
-            'read' => 19,
-            'write' => 38,
-            'destructive' => 7,
+            'read' => 25,
+            'write' => 45,
+            'destructive' => 8,
             'retryable' => 19,
-            'secretInput' => 8,
-            'secretOutput' => 8,
+            'secretInput' => 9,
+            'secretOutput' => 16,
             'mcpRead' => 3,
             'mcpWrite' => 1,
-            'mcpNever' => 60,
+            'mcpNever' => 74,
         ], $policyCounts);
     }
 

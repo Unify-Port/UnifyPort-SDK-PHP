@@ -23,5 +23,5 @@ Every public behavior change requires offline tests. Keep comments short and in 
 - avoid credentials, real data, internal hosts, private documentation, and debug output;
 - update complete English and Simplified Chinese documentation together;
 - run `composer validate --strict`, `composer check`, `composer public:check`, and `git diff --check`;
-- run `composer parity:check -- ../unifyport-sdk-node` for Node synchronization work;
+- run `composer parity:check -- ../UnifyPort-SDK-Nodejs` for Node synchronization work;
 - describe any intentional Node/PHP difference.

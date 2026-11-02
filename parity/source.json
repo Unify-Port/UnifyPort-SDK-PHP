@@ -2,12 +2,15 @@
   "schemaVersion": 1,
   "nodeSdk": {
     "package": "@unifyport/sdk-node",
-    "version": "0.1.2",
-    "repository": "https://github.com/Unify-Port/UnifyPort-SDK-Nodejs",
-    "commit": "a8e00abdf39abefd467491166dffb03a09e9e81d"
+    "version": "0.4.0",
+    "repository": "https://github.com/Unify-Port/UnifyPort-SDK-Nodejs.git",
+    "commit": "5901244c409f63fd6b77a899c239ebc9ee96dd50",
+    "baselineKind": "approved-source"
   },
   "contract": {
     "path": "contracts/device.openapi.yaml",
-    "sha256": "86a38f7d743b7e72c3a2c1521a9985cc61ac907f72712e671b70aa8d69734c44"
+    "sha256": "47face9790a454fb0d6204721785846427ca7ead23cf854061ab54646682e904",
+    "operationCount": 78,
+    "schemaCount": 218
   }
 }

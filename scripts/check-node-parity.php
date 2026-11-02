@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 $root = dirname(__DIR__);
-$nodeRoot = $argv[1] ?? dirname($root) . '/unifyport-sdk-node';
+// 默认目录与公开仓库名一致，显式参数仍可指向批准源码快照。
+$nodeRoot = $argv[1] ?? dirname($root) . '/UnifyPort-SDK-Nodejs';
 $localManifestPath = $root . '/parity/manifest.json';
 $nodeContractPath = $nodeRoot . '/contracts/device.openapi.yaml';
 $nodeCatalogPath = $nodeRoot . '/packages/sdk/src/generated/device/operation-catalog.ts';

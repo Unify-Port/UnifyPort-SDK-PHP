@@ -285,9 +285,15 @@ final readonly class Runtime
             }
         }
         $code = 'HTTP_' . $status;
+        $numericCode = null;
         if (is_array($payload)) {
             $nested = isset($payload['error']) && is_array($payload['error']) ? $payload['error'] : $payload;
             $code = $this->diagnostic($nested['code'] ?? null, 64) ?? $code;
+            // 只允许五位数字字符串，旧响应和任意上游文本不进入新的诊断字段。
+            $numeric = $nested['numeric_code'] ?? null;
+            if (is_string($numeric) && preg_match('/^[1-9][0-9]{4}$/D', $numeric) === 1) {
+                $numericCode = $numeric;
+            }
         }
         $requestId = $this->requestId($payload, $response);
 
@@ -299,6 +305,7 @@ final readonly class Runtime
             null,
             'device',
             $operation->operationId,
+            $numericCode,
         );
     }
 
