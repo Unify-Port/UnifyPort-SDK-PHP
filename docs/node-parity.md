@@ -7,10 +7,10 @@
 | Item | Baseline |
 | --- | --- |
 | Node package | `@unifyport/sdk-node` `0.4.0` |
-| Public Node commit | `5901244c409f63fd6b77a899c239ebc9ee96dd50` |
-| Contract SHA-256 | `47face9790a454fb0d6204721785846427ca7ead23cf854061ab54646682e904` |
+| Public Node commit | `ce60499d7169c860ed3f64a686e04bff44316f35` |
+| Contract SHA-256 | `8190a34dc8ed60476f79e00b37d9dea418082886724ee6d64efa389f440adffc` |
 | Operations | 78 |
-| Component schemas | 218 |
+| Component schemas | 225 |
 | Resource tags | 13 |
 
 `parity/source.json` stores the source baseline. `parity/manifest.json` is generated and contains every operation's method, path, tag, parameters, request-body requirement, retry flag, mutability, secret input/output flags, and MCP classification.
@@ -23,7 +23,7 @@ The baseline kind is `approved-source`. The package version above is source meta
 | --- | --- | --- |
 | `contracts/device.openapi.yaml` | `contracts/device.openapi.yaml` | Exact public snapshot |
 | `UnifyPortDeviceClient` | `UnifyPortDeviceClient` | 78 identical operationId methods |
-| generated `schema.ts` | generated `SchemaCatalog` + `ApiTypes` | All 218 schemas traceable; directional PHPStan aliases generated |
+| generated `schema.ts` | generated `SchemaCatalog` + `ApiTypes` | All 225 schemas traceable; directional PHPStan aliases generated |
 | generated `operation-catalog.ts` | generated `OperationCatalog` | Method/path/policy aligned |
 | generated flat client | generated client trait + 13 tag API modules | 78 operationId/method/path mappings exact; modules are PHP delegates |
 | `DeviceClientConfig` | `ClientConfig` | Same core values/defaults; PSR dependencies explicit |

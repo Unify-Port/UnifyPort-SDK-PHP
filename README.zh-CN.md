@@ -4,14 +4,14 @@
 
 面向 PHP 8.2+ 的官方 UnifyPort Device API SDK。它通过单一 `UnifyPortDeviceClient`、可选资源 API 模块、统一结果与异常模型、安全重试、cooperative operation deadline、响应上限和 cursor 分页，覆盖全部 78 个公开 operation。
 
-当前基线对齐已批准的公开 Node 源码 `5901244`，该 commit 的包版本元数据为 `0.4.0`。仓库提交 OpenAPI 契约和生成的 parity manifest，后续可以自动发现 Node SDK 漂移。
+当前基线对齐已批准的公开 Node 源码 `ce60499`，该 commit 的包版本元数据为 `0.4.0`。仓库提交 OpenAPI 契约和生成的 parity manifest，后续可以自动发现 Node SDK 漂移。
 
 ## 范围
 
 - PHP `8.2+`、64-bit runtime；
 - Composer + PSR-4；
 - 应用注入 PSR-18 HTTP Client 与 PSR-17 request/stream factories；
-- 78 个 Device API operation、218 个公开 component schema；
+- 78 个 Device API operation、225 个公开 component schema；
 - 每个 operation 自动生成 request/response PHPStan 类型，并区分 input/output integer 语义；
 - 固定使用 `X-Api-Key`；
 - JSON 请求与响应；
@@ -243,4 +243,6 @@ composer parity:check -- ../UnifyPort-SDK-Nodejs
 
 修改 contract、generator、runtime 或公开 API 前请阅读 [CONTRIBUTING.zh-CN.md](CONTRIBUTING.zh-CN.md)。安全问题按 [SECURITY.zh-CN.md](SECURITY.zh-CN.md) 报告。
 
-当前同步基线是已批准的 Node 源码 `5901244`，不代表 npm 已发布同等能力。本轮未发布任何包。详见 [本次契约更新](docs/zh-CN/contract-update.md)。
+当前同步基线是已批准的 Node 源码 `ce60499`，不代表 npm 已发布同等能力。本轮未发布任何包。详见 [本次契约更新](docs/zh-CN/contract-update.md)。
+
+[Facebook 渠道支持](docs/zh-CN/facebook.md)说明 session 授权、消息能力和标准回调。

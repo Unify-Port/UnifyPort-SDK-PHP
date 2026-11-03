@@ -2802,6 +2802,501 @@ final class SchemaCatalog
                 ],
             ],
         ],
+        'FacebookAccountAuthFailedWebhookEvent' => [
+            'type' => 'object',
+            'additionalProperties' => true,
+            'required' => [
+                'id',
+                'type',
+                'provider',
+                'account_id',
+                'occurred_at',
+                'data',
+            ],
+            'properties' => [
+                'id' => [
+                    'type' => 'string',
+                    'description' => '不透明事件 ID；重试保留原值，SDK 不重算。',
+                ],
+                'type' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'account.auth.failed',
+                    ],
+                ],
+                'provider' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'facebook',
+                    ],
+                ],
+                'account_id' => [
+                    'type' => 'string',
+                ],
+                'occurred_at' => [
+                    'type' => 'string',
+                    'format' => 'date-time',
+                ],
+                'data' => [
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'required' => [
+                        'auth_status',
+                        'runtime_status',
+                    ],
+                    'properties' => [
+                        'account' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'properties' => [
+                                'provider_account_ref' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                        'event' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'properties' => [
+                                'kind' => [
+                                    'type' => 'string',
+                                ],
+                                'runtime_status' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                        'auth_status' => [
+                            'type' => 'string',
+                            'enum' => [
+                                'failed',
+                            ],
+                        ],
+                        'runtime_status' => [
+                            'type' => 'string',
+                            'enum' => [
+                                'disconnected',
+                            ],
+                        ],
+                        'last_error' => [
+                            'type' => 'string',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'FacebookAccountAuthSucceededWebhookEvent' => [
+            'type' => 'object',
+            'additionalProperties' => true,
+            'required' => [
+                'id',
+                'type',
+                'provider',
+                'account_id',
+                'occurred_at',
+                'data',
+            ],
+            'properties' => [
+                'id' => [
+                    'type' => 'string',
+                    'description' => '不透明事件 ID；重试保留原值，SDK 不重算。',
+                ],
+                'type' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'account.auth.succeeded',
+                    ],
+                ],
+                'provider' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'facebook',
+                    ],
+                ],
+                'account_id' => [
+                    'type' => 'string',
+                ],
+                'occurred_at' => [
+                    'type' => 'string',
+                    'format' => 'date-time',
+                ],
+                'data' => [
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'required' => [
+                        'auth_status',
+                        'runtime_status',
+                    ],
+                    'properties' => [
+                        'account' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'properties' => [
+                                'provider_account_ref' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                        'event' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'properties' => [
+                                'kind' => [
+                                    'type' => 'string',
+                                ],
+                                'runtime_status' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                        'auth_status' => [
+                            'type' => 'string',
+                            'enum' => [
+                                'authorized',
+                            ],
+                        ],
+                        'runtime_status' => [
+                            'type' => 'string',
+                            'enum' => [
+                                'running',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'FacebookAccountStatusUpdatedWebhookEvent' => [
+            'type' => 'object',
+            'additionalProperties' => true,
+            'required' => [
+                'id',
+                'type',
+                'provider',
+                'account_id',
+                'occurred_at',
+                'data',
+            ],
+            'properties' => [
+                'id' => [
+                    'type' => 'string',
+                    'description' => '不透明事件 ID；重试保留原值，SDK 不重算。',
+                ],
+                'type' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'account.status.updated',
+                    ],
+                ],
+                'provider' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'facebook',
+                    ],
+                ],
+                'account_id' => [
+                    'type' => 'string',
+                ],
+                'occurred_at' => [
+                    'type' => 'string',
+                    'format' => 'date-time',
+                ],
+                'data' => [
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'required' => [
+                        'runtime_status',
+                    ],
+                    'properties' => [
+                        'account' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'properties' => [
+                                'provider_account_ref' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                        'event' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'properties' => [
+                                'kind' => [
+                                    'type' => 'string',
+                                ],
+                                'runtime_status' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                        'runtime_status' => [
+                            'type' => 'string',
+                            'enum' => [
+                                'error',
+                            ],
+                        ],
+                        'last_error' => [
+                            'type' => 'string',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'FacebookAttachmentMetadata' => [
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => [
+                'filename' => [
+                    'type' => 'string',
+                ],
+                'sticker_id' => [
+                    'type' => 'string',
+                ],
+                'error_code' => [
+                    'type' => 'string',
+                ],
+                'upload_error_code' => [
+                    'type' => 'string',
+                ],
+                'preview_error_code' => [
+                    'type' => 'string',
+                ],
+                'preview_upload_error_code' => [
+                    'type' => 'string',
+                ],
+                'width' => [
+                    'type' => 'number',
+                    'format' => 'double',
+                    'minimum' => 0,
+                ],
+                'height' => [
+                    'type' => 'number',
+                    'format' => 'double',
+                    'minimum' => 0,
+                ],
+                'duration' => [
+                    'type' => 'number',
+                    'format' => 'double',
+                    'minimum' => 0,
+                    'description' => '原生媒体时长，单位尚未确认；不得按 duration_ms 解读或转换。',
+                ],
+                'ptt' => [
+                    'type' => 'boolean',
+                ],
+                'animated' => [
+                    'type' => 'boolean',
+                ],
+                'download_status' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'pending',
+                        'ready',
+                        'failed',
+                        'restricted',
+                        'expired',
+                        'unavailable',
+                    ],
+                ],
+            ],
+        ],
+        'FacebookMessage' => [
+            'type' => 'object',
+            'additionalProperties' => true,
+            'required' => [
+                'id',
+                'direction',
+            ],
+            'properties' => [
+                'id' => [
+                    'type' => 'string',
+                ],
+                'direction' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'inbound',
+                        'outbound',
+                    ],
+                ],
+                'type' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'sticker',
+                    ],
+                ],
+                'text' => [
+                    'type' => 'string',
+                ],
+                'sent_at' => [
+                    'type' => 'string',
+                    'format' => 'date-time',
+                ],
+                'reply_to_message_id' => [
+                    'type' => 'string',
+                ],
+                'attachments' => [
+                    'type' => 'array',
+                    'items' => [
+                        '$ref' => '#/components/schemas/FacebookMessageAttachment',
+                    ],
+                ],
+            ],
+            'description' => '普通文本和媒体消息省略 type，单个无正文贴纸可为 sticker。ID 是字符串；reply_to_message_id 不表示支持引用发送。',
+        ],
+        'FacebookMessageAttachment' => [
+            'type' => 'object',
+            'additionalProperties' => true,
+            'required' => [
+                'type',
+            ],
+            'properties' => [
+                'id' => [
+                    'type' => 'string',
+                ],
+                'type' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'image',
+                        'video',
+                        'audio',
+                        'document',
+                    ],
+                ],
+                'url' => [
+                    'type' => 'string',
+                    'format' => 'uri',
+                ],
+                'thumbnail_url' => [
+                    'type' => 'string',
+                    'format' => 'uri',
+                ],
+                'mimetype' => [
+                    'type' => 'string',
+                ],
+                'size' => [
+                    'type' => 'integer',
+                    'minimum' => 0,
+                ],
+                'title' => [
+                    'type' => 'string',
+                ],
+                'description' => [
+                    'type' => 'string',
+                ],
+                'metadata' => [
+                    '$ref' => '#/components/schemas/FacebookAttachmentMetadata',
+                ],
+            ],
+            'description' => 'FB 单条消息中的有序附件。媒体 URL 可缺失；加密或下载失败的地址不作为可用明文地址。',
+        ],
+        'FacebookMessageReceivedWebhookEvent' => [
+            'type' => 'object',
+            'additionalProperties' => true,
+            'required' => [
+                'id',
+                'type',
+                'provider',
+                'account_id',
+                'occurred_at',
+                'data',
+            ],
+            'properties' => [
+                'id' => [
+                    'type' => 'string',
+                    'description' => '不透明事件 ID；重试保留原值，SDK 不重算。',
+                ],
+                'type' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'message.received',
+                    ],
+                ],
+                'provider' => [
+                    'type' => 'string',
+                    'enum' => [
+                        'facebook',
+                    ],
+                ],
+                'account_id' => [
+                    'type' => 'string',
+                ],
+                'occurred_at' => [
+                    'type' => 'string',
+                    'format' => 'date-time',
+                ],
+                'data' => [
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'required' => [
+                        'conversation',
+                        'sender',
+                        'message',
+                    ],
+                    'properties' => [
+                        'account' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'properties' => [
+                                'provider_account_ref' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                        'event' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'properties' => [
+                                'kind' => [
+                                    'type' => 'string',
+                                ],
+                                'runtime_status' => [
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                        'conversation' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'required' => [
+                                'id',
+                                'type',
+                            ],
+                            'properties' => [
+                                'id' => [
+                                    'type' => 'string',
+                                ],
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => [
+                                        'user',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'sender' => [
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                            'required' => [
+                                'id',
+                                'type',
+                            ],
+                            'properties' => [
+                                'id' => [
+                                    'type' => 'string',
+                                ],
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => [
+                                        'user',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'message' => [
+                            '$ref' => '#/components/schemas/FacebookMessage',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'FreeFormObject' => [
             'type' => 'object',
             'additionalProperties' => true,
@@ -6594,6 +7089,7 @@ final class SchemaCatalog
                 'whatsapp',
                 'line',
                 'twitter',
+                'facebook',
                 'zalo',
                 'tiktok',
                 'whatsapp-protocol',
@@ -6610,6 +7106,7 @@ final class SchemaCatalog
                 'whatsapp',
                 'line',
                 'twitter',
+                'facebook',
                 'zalo',
                 'tiktok',
                 'whatsapp-protocol',

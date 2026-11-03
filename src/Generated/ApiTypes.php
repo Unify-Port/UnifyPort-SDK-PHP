@@ -391,6 +391,67 @@ namespace UnifyPort\Sdk\Generated;
  *     ...<string, mixed>}
  * @phpstan-type ErrorEnvelopeOutput array{ request_id?: string, client_request_id?: string, error: ErrorOutput,
  *     ...<string, mixed>}
+ * @phpstan-type FacebookAccountAuthFailedWebhookEventInput array{ id: string, type: 'account.auth.failed',
+ *     provider: 'facebook', account_id: string, occurred_at: string, data: array{ account?: array{
+ *     provider_account_ref?: string, ...<string, mixed>}, event?: array{ kind?: string, runtime_status?: string,
+ *     ...<string, mixed>}, auth_status: 'failed', runtime_status: 'disconnected', last_error?: string, ...<string,
+ *     mixed>}, ...<string, mixed>}
+ * @phpstan-type FacebookAccountAuthFailedWebhookEventOutput array{ id: string, type: 'account.auth.failed',
+ *     provider: 'facebook', account_id: string, occurred_at: string, data: array{ account?: array{
+ *     provider_account_ref?: string, ...<string, mixed>}, event?: array{ kind?: string, runtime_status?: string,
+ *     ...<string, mixed>}, auth_status: 'failed', runtime_status: 'disconnected', last_error?: string, ...<string,
+ *     mixed>}, ...<string, mixed>}
+ * @phpstan-type FacebookAccountAuthSucceededWebhookEventInput array{ id: string, type: 'account.auth.succeeded',
+ *     provider: 'facebook', account_id: string, occurred_at: string, data: array{ account?: array{
+ *     provider_account_ref?: string, ...<string, mixed>}, event?: array{ kind?: string, runtime_status?: string,
+ *     ...<string, mixed>}, auth_status: 'authorized', runtime_status: 'running', ...<string, mixed>}, ...<string,
+ *     mixed>}
+ * @phpstan-type FacebookAccountAuthSucceededWebhookEventOutput array{ id: string, type: 'account.auth.succeeded',
+ *     provider: 'facebook', account_id: string, occurred_at: string, data: array{ account?: array{
+ *     provider_account_ref?: string, ...<string, mixed>}, event?: array{ kind?: string, runtime_status?: string,
+ *     ...<string, mixed>}, auth_status: 'authorized', runtime_status: 'running', ...<string, mixed>}, ...<string,
+ *     mixed>}
+ * @phpstan-type FacebookAccountStatusUpdatedWebhookEventInput array{ id: string, type: 'account.status.updated',
+ *     provider: 'facebook', account_id: string, occurred_at: string, data: array{ account?: array{
+ *     provider_account_ref?: string, ...<string, mixed>}, event?: array{ kind?: string, runtime_status?: string,
+ *     ...<string, mixed>}, runtime_status: 'error', last_error?: string, ...<string, mixed>}, ...<string, mixed>}
+ * @phpstan-type FacebookAccountStatusUpdatedWebhookEventOutput array{ id: string, type: 'account.status.updated',
+ *     provider: 'facebook', account_id: string, occurred_at: string, data: array{ account?: array{
+ *     provider_account_ref?: string, ...<string, mixed>}, event?: array{ kind?: string, runtime_status?: string,
+ *     ...<string, mixed>}, runtime_status: 'error', last_error?: string, ...<string, mixed>}, ...<string, mixed>}
+ * @phpstan-type FacebookAttachmentMetadataInput array{ filename?: string, sticker_id?: string, error_code?: string,
+ *     upload_error_code?: string, preview_error_code?: string, preview_upload_error_code?: string,
+ *     width?: float|int, height?: float|int, duration?: float|int, ptt?: bool, animated?: bool,
+ *     download_status?: 'pending'|'ready'|'failed'|'restricted'|'expired'|'unavailable', ...<string, mixed>}
+ * @phpstan-type FacebookAttachmentMetadataOutput array{ filename?: string, sticker_id?: string,
+ *     error_code?: string, upload_error_code?: string, preview_error_code?: string,
+ *     preview_upload_error_code?: string, width?: float|int|string, height?: float|int|string,
+ *     duration?: float|int|string, ptt?: bool, animated?: bool,
+ *     download_status?: 'pending'|'ready'|'failed'|'restricted'|'expired'|'unavailable', ...<string, mixed>}
+ * @phpstan-type FacebookMessageInput array{ id: string, direction: 'inbound'|'outbound', type?: 'sticker',
+ *     text?: string, sent_at?: string, reply_to_message_id?: string,
+ *     attachments?: list<FacebookMessageAttachmentInput>, ...<string, mixed>}
+ * @phpstan-type FacebookMessageOutput array{ id: string, direction: 'inbound'|'outbound', type?: 'sticker',
+ *     text?: string, sent_at?: string, reply_to_message_id?: string,
+ *     attachments?: list<FacebookMessageAttachmentOutput>, ...<string, mixed>}
+ * @phpstan-type FacebookMessageAttachmentInput array{ id?: string, type: 'image'|'video'|'audio'|'document',
+ *     url?: string, thumbnail_url?: string, mimetype?: string, size?: int, title?: string, description?: string,
+ *     metadata?: FacebookAttachmentMetadataInput, ...<string, mixed>}
+ * @phpstan-type FacebookMessageAttachmentOutput array{ id?: string, type: 'image'|'video'|'audio'|'document',
+ *     url?: string, thumbnail_url?: string, mimetype?: string, size?: int|string, title?: string,
+ *     description?: string, metadata?: FacebookAttachmentMetadataOutput, ...<string, mixed>}
+ * @phpstan-type FacebookMessageReceivedWebhookEventInput array{ id: string, type: 'message.received',
+ *     provider: 'facebook', account_id: string, occurred_at: string, data: array{ account?: array{
+ *     provider_account_ref?: string, ...<string, mixed>}, event?: array{ kind?: string, runtime_status?: string,
+ *     ...<string, mixed>}, conversation: array{ id: string, type: 'user', ...<string, mixed>}, sender: array{
+ *     id: string, type: 'user', ...<string, mixed>}, message: FacebookMessageInput, ...<string, mixed>},
+ *     ...<string, mixed>}
+ * @phpstan-type FacebookMessageReceivedWebhookEventOutput array{ id: string, type: 'message.received',
+ *     provider: 'facebook', account_id: string, occurred_at: string, data: array{ account?: array{
+ *     provider_account_ref?: string, ...<string, mixed>}, event?: array{ kind?: string, runtime_status?: string,
+ *     ...<string, mixed>}, conversation: array{ id: string, type: 'user', ...<string, mixed>}, sender: array{
+ *     id: string, type: 'user', ...<string, mixed>}, message: FacebookMessageOutput, ...<string, mixed>},
+ *     ...<string, mixed>}
  * @phpstan-type FreeFormObjectInput array<string, mixed>
  * @phpstan-type FreeFormObjectOutput array<string, mixed>
  * @phpstan-type GroupInput array{ id: string, conversation_id: string, name: string, avatar_url: string,
@@ -6329,10 +6390,10 @@ namespace UnifyPort\Sdk\Generated;
  * @phpstan-type ProviderAuthSessionOutput array{ account_id: string, provider: ProviderNameOutput,
  *     auth_mode: string, status: string, auth_payload?: array<string, mixed>, authorize_url: string,
  *     expires_at: string, switchable: bool, available_auth_modes: list<string>, ...<string, mixed>}
- * @phpstan-type ProviderInputNameInput 'telegram'|'whatsapp'|'line'|'twitter'|'zalo'|'tiktok'|'whatsapp-protocol'|'x'|'x_client'|'twitter_client'
- * @phpstan-type ProviderInputNameOutput 'telegram'|'whatsapp'|'line'|'twitter'|'zalo'|'tiktok'|'whatsapp-protocol'|'x'|'x_client'|'twitter_client'
- * @phpstan-type ProviderNameInput 'telegram'|'whatsapp'|'line'|'twitter'|'zalo'|'tiktok'|'whatsapp-protocol'
- * @phpstan-type ProviderNameOutput 'telegram'|'whatsapp'|'line'|'twitter'|'zalo'|'tiktok'|'whatsapp-protocol'
+ * @phpstan-type ProviderInputNameInput 'telegram'|'whatsapp'|'line'|'twitter'|'facebook'|'zalo'|'tiktok'|'whatsapp-protocol'|'x'|'x_client'|'twitter_client'
+ * @phpstan-type ProviderInputNameOutput 'telegram'|'whatsapp'|'line'|'twitter'|'facebook'|'zalo'|'tiktok'|'whatsapp-protocol'|'x'|'x_client'|'twitter_client'
+ * @phpstan-type ProviderNameInput 'telegram'|'whatsapp'|'line'|'twitter'|'facebook'|'zalo'|'tiktok'|'whatsapp-protocol'
+ * @phpstan-type ProviderNameOutput 'telegram'|'whatsapp'|'line'|'twitter'|'facebook'|'zalo'|'tiktok'|'whatsapp-protocol'
  * @phpstan-type ProviderProfileInput array{ id?: string, device_id?: WhatsAppDeviceIDInput, phone?: string,
  *     username?: string, display_name?: string, push_name?: string, business_name?: string, first_name?: string,
  *     last_name?: string, avatar_url?: string, bio?: string, platform?: string, ...<string, mixed>}

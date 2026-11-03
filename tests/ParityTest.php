@@ -23,7 +23,7 @@ final class ParityTest extends TestCase
         foreach (array_keys($operations) as $operationId) {
             self::assertTrue(method_exists($client, $operationId), $operationId);
         }
-        self::assertCount(218, SchemaCatalog::all());
+        self::assertCount(225, SchemaCatalog::all());
     }
 
     public function testResourceAndPolicyCountsMatchNodeBaseline(): void

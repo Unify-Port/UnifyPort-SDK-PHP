@@ -24,6 +24,13 @@ final class WebhookTypeTest extends TestCase
             $fixtures['messagePinUpdated/unpinned'],
             $fixtures['messagePollVoteUpdated/unavailable'],
         ];
+        // FB 已知字段必须保持强类型，不能被开放扩展字段掩盖。
+        $cases[] = $fixtures['facebookMessageReceived/inbound'];
+        $cases[] = $fixtures['facebookMessageReceived/inbound'];
+        $cases[] = $fixtures['facebookAccountAuthFailed/example'];
+        $cases[6]['body']['data']['message']['direction'] = true;
+        $cases[7]['body']['data']['message']['id'] = 123;
+        $cases[8]['body']['provider'] = 'whatsapp';
         $cases[0]['body']['data']['message']['call']['ended_by'] = 'recipient';
         $cases[1]['body']['data']['message']['call']['end_reason'] = 'timeout';
         $cases[2]['body']['data']['message']['call']['accepted_at'] = '2026-09-17T08:00:05Z';

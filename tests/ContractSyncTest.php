@@ -104,7 +104,7 @@ final class ContractSyncTest extends TestCase
     {
         $examples = json_decode((string) file_get_contents(__DIR__ . '/fixtures/webhook-examples.json'), true);
         self::assertIsArray($examples);
-        self::assertCount(49, $examples);
+        self::assertCount(57, $examples);
         foreach ($examples as $index => $example) {
             self::assertIsArray($example);
             self::assertIsString($example['schema']);

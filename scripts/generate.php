@@ -45,6 +45,8 @@ $artifacts['src/Generated/SchemaCatalog.php'] = generateSchemaCatalog($schemas);
 $typing = typingDocument($document);
 $artifacts['src/Generated/ApiTypes.php'] = generateApiTypes($typing['components']['schemas'], $operations);
 $artifacts['tests/WebhookExamples.php'] = generateWebhookExamples($document);
+// JSON 样例与 PHP 静态样例共用契约，避免渠道扩充后覆盖率只停留在旧 fixture。
+$artifacts['tests/fixtures/webhook-examples.json'] = generateWebhookFixtures($document);
 $artifacts['src/Generated/UnifyPortDeviceClientMethods.php'] = generateClientTrait($operations);
 foreach (groupByTag($operations) as $tag => $tagOperations) {
     $artifacts['src/Api/' . tagClass($tag) . '.php'] = generateResourceClass($tag, $tagOperations);
@@ -1116,4 +1118,34 @@ function yamlProtocolValues(mixed $value): mixed
         return array_map('yamlProtocolValues', $value);
     }
     return $value;
+}
+
+/** @param array<string, mixed> $document */
+function generateWebhookFixtures(array $document): string
+{
+    $cases = [];
+    foreach ($document['webhooks'] as $name => $webhook) {
+        $content = $webhook['post']['requestBody']['content']['application/json'];
+        $schema = substr($content['schema']['$ref'], strlen('#/components/schemas/'));
+        $examples = $content['examples'] ?? [];
+        if (isset($content['example'])) {
+            $examples['example'] = ['value' => $content['example']];
+        }
+        foreach ($examples as $label => $example) {
+            if (array_key_exists('value', $example)) {
+                $cases[] = ['name' => $name . '/' . $label, 'schema' => $schema, 'body' => $example['value']];
+            }
+        }
+    }
+    $encoded = json_encode($cases, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
+    // 保留已有 fixture 的双空格缩进，避免渠道更新重排无关样例。
+    $formatted = preg_replace_callback(
+        '/^ +/m',
+        static fn (array $match): string => str_repeat(' ', intdiv(strlen($match[0]), 2)),
+        $encoded,
+    );
+    if ($formatted === null) {
+        throw new RuntimeException('Unable to format public Webhook fixtures');
+    }
+    return $formatted . "\n";
 }

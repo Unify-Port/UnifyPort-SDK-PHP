@@ -11,6 +11,10 @@ namespace UnifyPort\Sdk\Tests;
 
 // 公开契约示例同时作为静态类型回归，避免 Webhook 嵌套字段在生成时丢失。
 /**
+ * @phpstan-import-type FacebookMessageReceivedWebhookEventOutput from \UnifyPort\Sdk\Generated\ApiTypes
+ * @phpstan-import-type FacebookAccountAuthSucceededWebhookEventOutput from \UnifyPort\Sdk\Generated\ApiTypes
+ * @phpstan-import-type FacebookAccountStatusUpdatedWebhookEventOutput from \UnifyPort\Sdk\Generated\ApiTypes
+ * @phpstan-import-type FacebookAccountAuthFailedWebhookEventOutput from \UnifyPort\Sdk\Generated\ApiTypes
  * @phpstan-import-type ContactUpdatedWebhookEventOutput from \UnifyPort\Sdk\Generated\ApiTypes
  * @phpstan-import-type ConversationDisappearingMessagesUpdatedWebhookEventOutput from \UnifyPort\Sdk\Generated\ApiTypes
  * @phpstan-import-type MessagePinUpdatedWebhookEventOutput from \UnifyPort\Sdk\Generated\ApiTypes
@@ -39,8 +43,287 @@ namespace UnifyPort\Sdk\Tests;
  */
 final class WebhookExamples
 {
-    /** @return ContactUpdatedWebhookEventOutput */
+    /** @return FacebookMessageReceivedWebhookEventOutput */
     public static function example0(): array
+    {
+        return [
+            'id' => 'evt_facebook_example_1',
+            'type' => 'message.received',
+            'provider' => 'facebook',
+            'account_id' => 'acc_example',
+            'occurred_at' => '2026-01-01T00:00:00.123456789Z',
+            'data' => [
+                'account' => [
+                    'provider_account_ref' => '9007199254740997',
+                ],
+                'conversation' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'sender' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'message' => [
+                    'id' => '9007199254740993',
+                    'direction' => 'inbound',
+                    'text' => 'Hello',
+                    'sent_at' => '2026-01-01T00:00:00.123456789Z',
+                    'reply_to_message_id' => '9007199254740991',
+                ],
+                'event' => [
+                    'kind' => 'message_received',
+                ],
+            ],
+        ];
+    }
+
+    /** @return FacebookMessageReceivedWebhookEventOutput */
+    public static function example1(): array
+    {
+        return [
+            'id' => 'evt_facebook_example_2',
+            'type' => 'message.received',
+            'provider' => 'facebook',
+            'account_id' => 'acc_example',
+            'occurred_at' => '2026-01-01T00:00:00.123456789Z',
+            'data' => [
+                'account' => [
+                    'provider_account_ref' => '9007199254740997',
+                ],
+                'conversation' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'sender' => [
+                    'id' => '9007199254740997',
+                    'type' => 'user',
+                ],
+                'message' => [
+                    'id' => '9007199254740994',
+                    'direction' => 'outbound',
+                    'text' => '',
+                ],
+                'event' => [
+                    'kind' => 'message_received',
+                ],
+            ],
+        ];
+    }
+
+    /** @return FacebookMessageReceivedWebhookEventOutput */
+    public static function example2(): array
+    {
+        return [
+            'id' => 'evt_facebook_example_3',
+            'type' => 'message.received',
+            'provider' => 'facebook',
+            'account_id' => 'acc_example',
+            'occurred_at' => '2026-01-01T00:00:00.123456789Z',
+            'data' => [
+                'account' => [
+                    'provider_account_ref' => '9007199254740997',
+                ],
+                'conversation' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'sender' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'message' => [
+                    'id' => '9007199254740996',
+                    'direction' => 'inbound',
+                    'attachments' => [
+                        [
+                            'id' => 'image_example',
+                            'type' => 'image',
+                            'url' => 'https://media.example.com/image.jpg',
+                            'thumbnail_url' => 'https://media.example.com/preview.jpg',
+                            'size' => 0,
+                            'metadata' => [
+                                'filename' => 'example.jpg',
+                                'width' => 0,
+                                'height' => 0,
+                                'animated' => false,
+                                'download_status' => 'ready',
+                            ],
+                        ],
+                        [
+                            'id' => 'audio_example',
+                            'type' => 'audio',
+                            'metadata' => [
+                                'duration' => 0,
+                                'ptt' => false,
+                                'download_status' => 'failed',
+                                'error_code' => 'download_failed',
+                            ],
+                        ],
+                    ],
+                ],
+                'event' => [
+                    'kind' => 'message_received',
+                ],
+            ],
+        ];
+    }
+
+    /** @return FacebookMessageReceivedWebhookEventOutput */
+    public static function example3(): array
+    {
+        return [
+            'id' => 'evt_facebook_example_4',
+            'type' => 'message.received',
+            'provider' => 'facebook',
+            'account_id' => 'acc_example',
+            'occurred_at' => '2026-01-01T00:00:00.123456789Z',
+            'data' => [
+                'account' => [
+                    'provider_account_ref' => '9007199254740997',
+                ],
+                'conversation' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'sender' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'message' => [
+                    'id' => '9007199254740998',
+                    'direction' => 'inbound',
+                    'type' => 'sticker',
+                    'attachments' => [
+                        [
+                            'type' => 'image',
+                            'metadata' => [
+                                'sticker_id' => 'sticker_example',
+                                'animated' => false,
+                            ],
+                        ],
+                    ],
+                ],
+                'event' => [
+                    'kind' => 'message_received',
+                ],
+            ],
+        ];
+    }
+
+    /** @return FacebookMessageReceivedWebhookEventOutput */
+    public static function example4(): array
+    {
+        return [
+            'id' => 'evt_facebook_example_5',
+            'type' => 'message.received',
+            'provider' => 'facebook',
+            'account_id' => 'acc_example',
+            'occurred_at' => '2026-01-01T00:00:00.123456789Z',
+            'data' => [
+                'account' => [
+                    'provider_account_ref' => '9007199254740997',
+                ],
+                'conversation' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'sender' => [
+                    'id' => '9007199254740995',
+                    'type' => 'user',
+                ],
+                'message' => [
+                    'id' => '9007199254740999',
+                    'direction' => 'inbound',
+                    'attachments' => [
+                        [
+                            'type' => 'document',
+                            'metadata' => [
+                                'filename' => 'example.pdf',
+                                'download_status' => 'restricted',
+                            ],
+                        ],
+                    ],
+                ],
+                'event' => [
+                    'kind' => 'message_received',
+                ],
+            ],
+        ];
+    }
+
+    /** @return FacebookAccountAuthSucceededWebhookEventOutput */
+    public static function example5(): array
+    {
+        return [
+            'id' => 'evt_facebook_example_6',
+            'type' => 'account.auth.succeeded',
+            'provider' => 'facebook',
+            'account_id' => 'acc_example',
+            'occurred_at' => '2026-01-01T00:00:00.123456789Z',
+            'data' => [
+                'account' => [
+                    'provider_account_ref' => '9007199254740997',
+                ],
+                'event' => [
+                    'kind' => 'account_auth_succeeded',
+                    'runtime_status' => 'running',
+                ],
+                'runtime_status' => 'running',
+                'auth_status' => 'authorized',
+            ],
+        ];
+    }
+
+    /** @return FacebookAccountStatusUpdatedWebhookEventOutput */
+    public static function example6(): array
+    {
+        return [
+            'id' => 'evt_facebook_example_7',
+            'type' => 'account.status.updated',
+            'provider' => 'facebook',
+            'account_id' => 'acc_example',
+            'occurred_at' => '2026-01-01T00:00:00.123456789Z',
+            'data' => [
+                'account' => [
+                    'provider_account_ref' => '9007199254740997',
+                ],
+                'event' => [
+                    'kind' => 'account_status_updated',
+                    'runtime_status' => 'error',
+                ],
+                'runtime_status' => 'error',
+                'last_error' => 'network_timeout',
+            ],
+        ];
+    }
+
+    /** @return FacebookAccountAuthFailedWebhookEventOutput */
+    public static function example7(): array
+    {
+        return [
+            'id' => 'evt_facebook_example_8',
+            'type' => 'account.auth.failed',
+            'provider' => 'facebook',
+            'account_id' => 'acc_example',
+            'occurred_at' => '2026-01-01T00:00:00.123456789Z',
+            'data' => [
+                'account' => [
+                    'provider_account_ref' => '9007199254740997',
+                ],
+                'event' => [
+                    'kind' => 'account_auth_failed',
+                    'runtime_status' => 'disconnected',
+                ],
+                'runtime_status' => 'disconnected',
+                'auth_status' => 'failed',
+                'last_error' => 'cookie_expired',
+            ],
+        ];
+    }
+
+    /** @return ContactUpdatedWebhookEventOutput */
+    public static function example8(): array
     {
         return [
             'id' => 'evt_example_127019',
@@ -71,7 +354,7 @@ final class WebhookExamples
     }
 
     /** @return ContactUpdatedWebhookEventOutput */
-    public static function example1(): array
+    public static function example9(): array
     {
         return [
             'id' => 'evt_example_127947',
@@ -99,7 +382,7 @@ final class WebhookExamples
     }
 
     /** @return ContactUpdatedWebhookEventOutput */
-    public static function example2(): array
+    public static function example10(): array
     {
         return [
             'id' => 'evt_example_128706',
@@ -127,7 +410,7 @@ final class WebhookExamples
     }
 
     /** @return ConversationDisappearingMessagesUpdatedWebhookEventOutput */
-    public static function example3(): array
+    public static function example11(): array
     {
         return [
             'id' => 'evt_example_130476',
@@ -159,7 +442,7 @@ final class WebhookExamples
     }
 
     /** @return ConversationDisappearingMessagesUpdatedWebhookEventOutput */
-    public static function example4(): array
+    public static function example12(): array
     {
         return [
             'id' => 'evt_example_131405',
@@ -191,7 +474,7 @@ final class WebhookExamples
     }
 
     /** @return ConversationDisappearingMessagesUpdatedWebhookEventOutput */
-    public static function example5(): array
+    public static function example13(): array
     {
         return [
             'id' => 'evt_example_132320',
@@ -223,7 +506,7 @@ final class WebhookExamples
     }
 
     /** @return ConversationDisappearingMessagesUpdatedWebhookEventOutput */
-    public static function example6(): array
+    public static function example14(): array
     {
         return [
             'id' => 'evt_example_133252',
@@ -249,7 +532,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePinUpdatedWebhookEventOutput */
-    public static function example7(): array
+    public static function example15(): array
     {
         return [
             'id' => 'evt_example_134940',
@@ -288,7 +571,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePinUpdatedWebhookEventOutput */
-    public static function example8(): array
+    public static function example16(): array
     {
         return [
             'id' => 'evt_example_136025',
@@ -321,7 +604,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePinUpdatedWebhookEventOutput */
-    public static function example9(): array
+    public static function example17(): array
     {
         return [
             'id' => 'evt_example_136901',
@@ -350,7 +633,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePollReceivedWebhookEventOutput */
-    public static function example10(): array
+    public static function example18(): array
     {
         return [
             'id' => 'evt_example_138228',
@@ -394,7 +677,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePollVoteUpdatedWebhookEventOutput */
-    public static function example11(): array
+    public static function example19(): array
     {
         return [
             'id' => 'evt_example_140068',
@@ -432,7 +715,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePollVoteUpdatedWebhookEventOutput */
-    public static function example12(): array
+    public static function example20(): array
     {
         return [
             'id' => 'evt_example_141122',
@@ -470,7 +753,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePollVoteUpdatedWebhookEventOutput */
-    public static function example13(): array
+    public static function example21(): array
     {
         return [
             'id' => 'evt_example_142170',
@@ -506,7 +789,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePollVoteUpdatedWebhookEventOutput */
-    public static function example14(): array
+    public static function example22(): array
     {
         return [
             'id' => 'evt_example_143180',
@@ -542,7 +825,7 @@ final class WebhookExamples
     }
 
     /** @return MessagePollHistoryWebhookEventOutput */
-    public static function example15(): array
+    public static function example23(): array
     {
         return [
             'id' => 'evt_example_144750',
@@ -589,7 +872,7 @@ final class WebhookExamples
     }
 
     /** @return MessageLinkPreviewReceivedWebhookEventOutput */
-    public static function example16(): array
+    public static function example24(): array
     {
         return [
             'id' => 'evt_example_146824',
@@ -625,7 +908,7 @@ final class WebhookExamples
     }
 
     /** @return MessageLinkPreviewReceivedWebhookEventOutput */
-    public static function example17(): array
+    public static function example25(): array
     {
         return [
             'id' => 'evt_example_147918',
@@ -655,7 +938,7 @@ final class WebhookExamples
     }
 
     /** @return MessageLinkPreviewUpdatedWebhookEventOutput */
-    public static function example18(): array
+    public static function example26(): array
     {
         return [
             'id' => 'evt_example_149615',
@@ -684,7 +967,7 @@ final class WebhookExamples
     }
 
     /** @return MessageLinkPreviewUpdatedWebhookEventOutput */
-    public static function example19(): array
+    public static function example27(): array
     {
         return [
             'id' => 'evt_example_150448',
@@ -714,7 +997,7 @@ final class WebhookExamples
     }
 
     /** @return MessageLinkPreviewUpdatedWebhookEventOutput */
-    public static function example20(): array
+    public static function example28(): array
     {
         return [
             'id' => 'evt_example_151301',
@@ -740,7 +1023,7 @@ final class WebhookExamples
     }
 
     /** @return MessageLinkPreviewHistoryWebhookEventOutput */
-    public static function example21(): array
+    public static function example29(): array
     {
         return [
             'id' => 'evt_example_152781',
@@ -797,7 +1080,7 @@ final class WebhookExamples
     }
 
     /** @return MessageInteractiveReceivedWebhookEventOutput */
-    public static function example22(): array
+    public static function example30(): array
     {
         return [
             'id' => 'evt_example_155214',
@@ -853,7 +1136,7 @@ final class WebhookExamples
     }
 
     /** @return MessageInteractiveReceivedWebhookEventOutput */
-    public static function example23(): array
+    public static function example31(): array
     {
         return [
             'id' => 'evt_example_156729',
@@ -915,7 +1198,7 @@ final class WebhookExamples
     }
 
     /** @return MessageInteractiveReceivedWebhookEventOutput */
-    public static function example24(): array
+    public static function example32(): array
     {
         return [
             'id' => 'evt_example_158417',
@@ -952,7 +1235,7 @@ final class WebhookExamples
     }
 
     /** @return MessageInteractiveReceivedWebhookEventOutput */
-    public static function example25(): array
+    public static function example33(): array
     {
         return [
             'id' => 'evt_example_159498',
@@ -987,7 +1270,7 @@ final class WebhookExamples
     }
 
     /** @return MessageInteractiveUpdatedWebhookEventOutput */
-    public static function example26(): array
+    public static function example34(): array
     {
         return [
             'id' => 'evt_example_161269',
@@ -1021,7 +1304,7 @@ final class WebhookExamples
     }
 
     /** @return MessageInteractiveHistoryWebhookEventOutput */
-    public static function example27(): array
+    public static function example35(): array
     {
         return [
             'id' => 'evt_example_163002',
@@ -1099,7 +1382,7 @@ final class WebhookExamples
     }
 
     /** @return MessageCommerceReceivedWebhookEventOutput */
-    public static function example28(): array
+    public static function example36(): array
     {
         return [
             'id' => 'evt_example_166040',
@@ -1144,7 +1427,7 @@ final class WebhookExamples
     }
 
     /** @return MessageCommerceReceivedWebhookEventOutput */
-    public static function example29(): array
+    public static function example37(): array
     {
         return [
             'id' => 'evt_example_167385',
@@ -1184,7 +1467,7 @@ final class WebhookExamples
     }
 
     /** @return MessageCommerceUpdatedWebhookEventOutput */
-    public static function example30(): array
+    public static function example38(): array
     {
         return [
             'id' => 'evt_example_169196',
@@ -1218,7 +1501,7 @@ final class WebhookExamples
     }
 
     /** @return MessageCommerceUpdatedWebhookEventOutput */
-    public static function example31(): array
+    public static function example39(): array
     {
         return [
             'id' => 'evt_example_170114',
@@ -1255,7 +1538,7 @@ final class WebhookExamples
     }
 
     /** @return MessageCommerceHistoryWebhookEventOutput */
-    public static function example32(): array
+    public static function example40(): array
     {
         return [
             'id' => 'evt_example_171797',
@@ -1328,7 +1611,7 @@ final class WebhookExamples
     }
 
     /** @return WhatsAppMessageDeviceWebhookEventOutput */
-    public static function example33(): array
+    public static function example41(): array
     {
         return [
             'id' => 'evt_example_174750',
@@ -1355,7 +1638,7 @@ final class WebhookExamples
     }
 
     /** @return MessageReferralReceivedWebhookEventOutput */
-    public static function example34(): array
+    public static function example42(): array
     {
         return [
             'id' => 'evt_example_176338',
@@ -1407,7 +1690,7 @@ final class WebhookExamples
     }
 
     /** @return MessageReferralReceivedWebhookEventOutput */
-    public static function example35(): array
+    public static function example43(): array
     {
         return [
             'id' => 'evt_example_178242',
@@ -1440,7 +1723,7 @@ final class WebhookExamples
     }
 
     /** @return MessageReferralUpdatedWebhookEventOutput */
-    public static function example36(): array
+    public static function example44(): array
     {
         return [
             'id' => 'evt_example_179990',
@@ -1492,7 +1775,7 @@ final class WebhookExamples
     }
 
     /** @return ConversationHistoryWebhookEventOutput */
-    public static function example37(): array
+    public static function example45(): array
     {
         return [
             'id' => 'evt_example_183342',
@@ -1525,7 +1808,7 @@ final class WebhookExamples
     }
 
     /** @return ConversationHistoryWebhookEventOutput */
-    public static function example38(): array
+    public static function example46(): array
     {
         return [
             'id' => 'evt_example_184219',
@@ -1547,7 +1830,7 @@ final class WebhookExamples
     }
 
     /** @return MessageReferralHistoryWebhookEventOutput */
-    public static function example39(): array
+    public static function example47(): array
     {
         return [
             'id' => 'evt_example_185631',
@@ -1610,7 +1893,7 @@ final class WebhookExamples
     }
 
     /** @return CallMessageReceivedWebhookEventOutput */
-    public static function example40(): array
+    public static function example48(): array
     {
         return [
             'id' => 'evt_example_call_offered_001',
@@ -1642,7 +1925,7 @@ final class WebhookExamples
     }
 
     /** @return CallMessageUpdatedWebhookEventOutput */
-    public static function example41(): array
+    public static function example49(): array
     {
         return [
             'id' => 'evt_example_call_accepted_001',
@@ -1673,7 +1956,7 @@ final class WebhookExamples
     }
 
     /** @return CallMessageUpdatedWebhookEventOutput */
-    public static function example42(): array
+    public static function example50(): array
     {
         return [
             'id' => 'evt_example_call_ended_001',
@@ -1703,7 +1986,7 @@ final class WebhookExamples
     }
 
     /** @return CallMessageUpdatedWebhookEventOutput */
-    public static function example43(): array
+    public static function example51(): array
     {
         return [
             'id' => 'evt_example_call_ended_001',
@@ -1726,7 +2009,7 @@ final class WebhookExamples
     }
 
     /** @return CallMessageUpdatedWebhookEventOutput */
-    public static function example44(): array
+    public static function example52(): array
     {
         return [
             'id' => 'evt_example_call_ended_002',
@@ -1749,7 +2032,7 @@ final class WebhookExamples
     }
 
     /** @return WhatsAppAccountAuthFailedWebhookEventOutput */
-    public static function example45(): array
+    public static function example53(): array
     {
         return [
             'id' => 'evt_whatsapp_example_auth_failed',
@@ -1775,7 +2058,7 @@ final class WebhookExamples
     }
 
     /** @return AccountProfileUpdatedWebhookEventOutput */
-    public static function example46(): array
+    public static function example54(): array
     {
         return [
             'id' => 'evt_profile_7e91d2c4',
@@ -1807,7 +2090,7 @@ final class WebhookExamples
     }
 
     /** @return AccountProfileUpdatedWebhookEventOutput */
-    public static function example47(): array
+    public static function example55(): array
     {
         return [
             'id' => 'evt_profile_avatar_a21e7d9c',
@@ -1836,7 +2119,7 @@ final class WebhookExamples
     }
 
     /** @return AccountStartedWebhookEventOutput */
-    public static function example48(): array
+    public static function example56(): array
     {
         return [
             'id' => 'evt_acc_2b3c4d5e6f',

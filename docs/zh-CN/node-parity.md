@@ -7,10 +7,10 @@
 | 项目 | 基线 |
 | --- | --- |
 | Node package | `@unifyport/sdk-node` `0.4.0` |
-| 公开 Node commit | `5901244c409f63fd6b77a899c239ebc9ee96dd50` |
-| Contract SHA-256 | `47face9790a454fb0d6204721785846427ca7ead23cf854061ab54646682e904` |
+| 公开 Node commit | `ce60499d7169c860ed3f64a686e04bff44316f35` |
+| Contract SHA-256 | `8190a34dc8ed60476f79e00b37d9dea418082886724ee6d64efa389f440adffc` |
 | Operation | 78 |
-| Component schema | 218 |
+| Component schema | 225 |
 | Resource tag | 13 |
 
 `parity/source.json` 记录来源；生成的 `parity/manifest.json` 保存每个 operation 的 method、path、tag、参数、request body、retry、mutability、secret 和 MCP 分类。
@@ -23,7 +23,7 @@ Baseline kind 为 `approved-source`。表中的包版本是该 commit 的源码�
 | --- | --- | --- |
 | `contracts/device.openapi.yaml` | 同名 contract | 精确公开快照 |
 | `UnifyPortDeviceClient` | 同名 client | 78 个相同 operationId 方法 |
-| `schema.ts` | `SchemaCatalog` + `ApiTypes` | 218 个 schema 可追踪，并生成 input/output PHPStan alias |
+| `schema.ts` | `SchemaCatalog` + `ApiTypes` | 225 个 schema 可追踪，并生成 input/output PHPStan alias |
 | `operation-catalog.ts` | `OperationCatalog` | method/path/policy 对齐 |
 | 扁平生成 client | client trait + 11 个 tag API module | 78 个 operationId/method/path 映射一致；资源模块仅代理 |
 | `DeviceClientConfig` | `ClientConfig` | 核心配置/默认值一致；PSR 依赖显式注入 |
