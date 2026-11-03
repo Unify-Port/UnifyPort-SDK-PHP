@@ -15,7 +15,7 @@
 Node 与 PHP 仓库保持 sibling 布局，更新 Node 后运行：
 
 ```bash
-composer parity:check -- ../unifyport-sdk-node
+composer parity:check -- ../UnifyPort-SDK-Nodejs
 ```
 
 命令会比较完整 contract SHA-256，以及 Node generated catalog 和 PHP manifest 中全部 operation policy，不依赖人工记忆。
@@ -58,7 +58,7 @@ composer test
 composer examples:check
 composer public:check
 composer archive:check
-composer parity:check -- ../unifyport-sdk-node
+composer parity:check -- ../UnifyPort-SDK-Nodejs
 composer audit --locked
 git diff --check
 ```

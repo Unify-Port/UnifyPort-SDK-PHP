@@ -6,24 +6,26 @@
 
 | 项目 | 基线 |
 | --- | --- |
-| Node package | `@unifyport/sdk-node` `0.1.2` |
-| 公开 Node commit | `a8e00abdf39abefd467491166dffb03a09e9e81d` |
-| Contract SHA-256 | `86a38f7d743b7e72c3a2c1521a9985cc61ac907f72712e671b70aa8d69734c44` |
-| Operation | 64 |
-| Component schema | 69 |
-| Resource tag | 11 |
+| Node package | `@unifyport/sdk-node` `0.4.0` |
+| 公开 Node commit | `ce60499d7169c860ed3f64a686e04bff44316f35` |
+| Contract SHA-256 | `8190a34dc8ed60476f79e00b37d9dea418082886724ee6d64efa389f440adffc` |
+| Operation | 78 |
+| Component schema | 225 |
+| Resource tag | 13 |
 
 `parity/source.json` 记录来源；生成的 `parity/manifest.json` 保存每个 operation 的 method、path、tag、参数、request body、retry、mutability、secret 和 MCP 分类。
+
+Baseline kind 为 `approved-source`。表中的包版本是该 commit 的源码元数据，不表示 npm 该版本已发布本次能力。
 
 ## 模块映射
 
 | Node SDK | PHP SDK | 状态 |
 | --- | --- | --- |
 | `contracts/device.openapi.yaml` | 同名 contract | 精确公开快照 |
-| `UnifyPortDeviceClient` | 同名 client | 64 个相同 operationId 方法 |
-| `schema.ts` | `SchemaCatalog` + `ApiTypes` | 69 个 schema 可追踪，并生成 input/output PHPStan alias |
+| `UnifyPortDeviceClient` | 同名 client | 78 个相同 operationId 方法 |
+| `schema.ts` | `SchemaCatalog` + `ApiTypes` | 225 个 schema 可追踪，并生成 input/output PHPStan alias |
 | `operation-catalog.ts` | `OperationCatalog` | method/path/policy 对齐 |
-| 扁平生成 client | client trait + 11 个 tag API module | 64 个 operationId/method/path 映射一致；资源模块仅代理 |
+| 扁平生成 client | client trait + 11 个 tag API module | 78 个 operationId/method/path 映射一致；资源模块仅代理 |
 | `DeviceClientConfig` | `ClientConfig` | 核心配置/默认值一致；PSR 依赖显式注入 |
 | Node error classes | PHP `Exception` namespace | 语义一一映射 |
 | `paginateCursor` | `CursorPaginator::paginate` | cursor/maxPages 对齐；取消差异见下文 |

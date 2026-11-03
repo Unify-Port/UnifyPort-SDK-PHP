@@ -19,8 +19,12 @@ use UnifyPort\Sdk\UnifyPortDeviceClient;
  * operation 别名从同一 OpenAPI 生成，方法继续使用 array 与 OperationRequest 的运行时边界。
  * @phpstan-import-type BlockContactOperationRequest from ApiTypes
  * @phpstan-import-type BlockContactOperationResponse from ApiTypes
+ * @phpstan-import-type CreateContactOperationRequest from ApiTypes
+ * @phpstan-import-type CreateContactOperationResponse from ApiTypes
  * @phpstan-import-type GetContactOperationRequest from ApiTypes
  * @phpstan-import-type GetContactOperationResponse from ApiTypes
+ * @phpstan-import-type GetContactMembershipOperationRequest from ApiTypes
+ * @phpstan-import-type GetContactMembershipOperationResponse from ApiTypes
  * @phpstan-import-type ListContactBlocklistOperationRequest from ApiTypes
  * @phpstan-import-type ListContactBlocklistOperationResponse from ApiTypes
  * @phpstan-import-type ListContactsOperationRequest from ApiTypes
@@ -50,6 +54,19 @@ final readonly class ContactsApi
     }
 
     /**
+     * 添加联系人
+     *
+     * @param CreateContactOperationRequest|OperationRequest $request
+     * @return ApiResult<CreateContactOperationResponse>
+     */
+    public function createContact(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->client->createContact($request, $execution);
+    }
+
+    /**
      * 获取联系人详情
      *
      * @param GetContactOperationRequest|OperationRequest $request
@@ -60,6 +77,19 @@ final readonly class ContactsApi
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->client->getContact($request, $execution);
+    }
+
+    /**
+     * 查询联系人是否在联系人列表中
+     *
+     * @param GetContactMembershipOperationRequest|OperationRequest $request
+     * @return ApiResult<GetContactMembershipOperationResponse>
+     */
+    public function getContactMembership(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->client->getContactMembership($request, $execution);
     }
 
     /**

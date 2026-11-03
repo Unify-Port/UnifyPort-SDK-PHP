@@ -15,13 +15,13 @@
 Keep the Node and PHP repositories as siblings, update the Node checkout, then run:
 
 ```bash
-composer parity:check -- ../unifyport-sdk-node
+composer parity:check -- ../UnifyPort-SDK-Nodejs
 ```
 
 The command compares:
 
 1. the complete Device OpenAPI contract SHA-256;
-2. all 64 generated Node operation policies against the PHP manifest;
+2. all 78 generated Node operation policies against the PHP manifest;
 3. operation presence and policy fields rather than relying on a human checklist.
 
 Any failure requires review; do not copy files blindly.
@@ -94,7 +94,7 @@ composer test
 composer examples:check
 composer public:check
 composer archive:check
-composer parity:check -- ../unifyport-sdk-node
+composer parity:check -- ../UnifyPort-SDK-Nodejs
 composer audit --locked
 git diff --check
 ```

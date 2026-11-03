@@ -23,6 +23,8 @@ use UnifyPort\Sdk\UnifyPortDeviceClient;
  * @phpstan-import-type DeleteAccountOperationResponse from ApiTypes
  * @phpstan-import-type GetAccountOperationRequest from ApiTypes
  * @phpstan-import-type GetAccountOperationResponse from ApiTypes
+ * @phpstan-import-type GetAccountOperationOperationRequest from ApiTypes
+ * @phpstan-import-type GetAccountOperationOperationResponse from ApiTypes
  * @phpstan-import-type ListAccountsOperationRequest from ApiTypes
  * @phpstan-import-type ListAccountsOperationResponse from ApiTypes
  * @phpstan-import-type UpdateAccountOperationRequest from ApiTypes
@@ -71,6 +73,19 @@ final readonly class AccountsApi
         ?RequestExecutionOptions $execution = null,
     ): ApiResult {
         return $this->client->getAccount($request, $execution);
+    }
+
+    /**
+     * 查询账号计费操作
+     *
+     * @param GetAccountOperationOperationRequest|OperationRequest $request
+     * @return ApiResult<GetAccountOperationOperationResponse>
+     */
+    public function getAccountOperation(
+        array|OperationRequest $request,
+        ?RequestExecutionOptions $execution = null,
+    ): ApiResult {
+        return $this->client->getAccountOperation($request, $execution);
     }
 
     /**

@@ -6,24 +6,26 @@
 
 | Item | Baseline |
 | --- | --- |
-| Node package | `@unifyport/sdk-node` `0.1.2` |
-| Public Node commit | `a8e00abdf39abefd467491166dffb03a09e9e81d` |
-| Contract SHA-256 | `86a38f7d743b7e72c3a2c1521a9985cc61ac907f72712e671b70aa8d69734c44` |
-| Operations | 64 |
-| Component schemas | 69 |
-| Resource tags | 11 |
+| Node package | `@unifyport/sdk-node` `0.4.0` |
+| Public Node commit | `ce60499d7169c860ed3f64a686e04bff44316f35` |
+| Contract SHA-256 | `8190a34dc8ed60476f79e00b37d9dea418082886724ee6d64efa389f440adffc` |
+| Operations | 78 |
+| Component schemas | 225 |
+| Resource tags | 13 |
 
 `parity/source.json` stores the source baseline. `parity/manifest.json` is generated and contains every operation's method, path, tag, parameters, request-body requirement, retry flag, mutability, secret input/output flags, and MCP classification.
+
+The baseline kind is `approved-source`. The package version above is source metadata at that commit, not a claim that the npm release includes these capabilities.
 
 ## Module mapping
 
 | Node SDK | PHP SDK | Status |
 | --- | --- | --- |
 | `contracts/device.openapi.yaml` | `contracts/device.openapi.yaml` | Exact public snapshot |
-| `UnifyPortDeviceClient` | `UnifyPortDeviceClient` | 64 identical operationId methods |
-| generated `schema.ts` | generated `SchemaCatalog` + `ApiTypes` | All 69 schemas traceable; directional PHPStan aliases generated |
+| `UnifyPortDeviceClient` | `UnifyPortDeviceClient` | 78 identical operationId methods |
+| generated `schema.ts` | generated `SchemaCatalog` + `ApiTypes` | All 225 schemas traceable; directional PHPStan aliases generated |
 | generated `operation-catalog.ts` | generated `OperationCatalog` | Method/path/policy aligned |
-| generated flat client | generated client trait + 11 tag API modules | 64 operationId/method/path mappings exact; modules are PHP delegates |
+| generated flat client | generated client trait + 13 tag API modules | 78 operationId/method/path mappings exact; modules are PHP delegates |
 | `DeviceClientConfig` | `ClientConfig` | Same core values/defaults; PSR dependencies explicit |
 | `RetryConfig` | `RetryConfig` | Same defaults and hard limits |
 | `RequestExecutionOptions` | `RequestExecutionOptions` | timeout and retry tightening aligned; no AbortSignal |
@@ -41,13 +43,15 @@
 | Workspace | 2 | `WorkspaceApi` |
 | API Keys | 4 | `ApiKeysApi` |
 | Providers | 1 | `ProvidersApi` |
-| Accounts | 5 | `AccountsApi` |
-| Account Auth | 8 | `AccountAuthApi` |
+| Accounts | 6 | `AccountsApi` |
+| Account Auth | 11 | `AccountAuthApi` |
 | Account Runtime | 4 | `AccountRuntimeApi` |
-| Conversations | 13 | `ConversationsApi` |
-| Contacts | 6 | `ContactsApi` |
+| Conversations | 14 | `ConversationsApi` |
+| Contacts | 8 | `ContactsApi` |
 | Groups | 10 | `GroupsApi` |
 | Messages | 5 | `MessagesApi` |
+| Calls | 3 | `CallsApi` |
+| Posts | 4 | `PostsApi` |
 | Webhook Endpoints | 6 | `WebhookEndpointsApi` |
 
 No public Device API operation is omitted.

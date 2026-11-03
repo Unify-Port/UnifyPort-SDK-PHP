@@ -2,16 +2,16 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-Official PHP 8.2+ SDK for the public UnifyPort Device API. It exposes all 64 public operations through a single `UnifyPortDeviceClient`, optional resource-oriented API modules, a consistent result and exception model, safe retries, cooperative operation deadlines, response limits, and cursor pagination.
+Official PHP 8.2+ SDK for the public UnifyPort Device API. It exposes all 78 public operations through a single `UnifyPortDeviceClient`, optional resource-oriented API modules, a consistent result and exception model, safe retries, cooperative operation deadlines, response limits, and cursor pagination.
 
-The SDK is aligned with `@unifyport/sdk-node` `0.1.2` at public Node commit `a8e00ab`. The OpenAPI contract and generated parity manifest are committed so future Node changes can be detected automatically.
+The SDK tracks approved public Node source `ce60499` (`0.4.0` package metadata at that commit). The OpenAPI contract and generated parity manifest are committed so future Node changes can be detected automatically.
 
 ## Status and scope
 
 - PHP `8.2+` on a 64-bit runtime;
 - Composer with PSR-4 autoloading;
 - PSR-18 HTTP client and PSR-17 request/stream factories supplied by the application;
-- all 64 Device API operations and 69 public component schemas;
+- all 78 Device API operations and 225 public component schemas;
 - generated per-operation request/response PHPStan types, including input/output integer semantics;
 - `X-Api-Key` authentication only;
 - JSON request and response bodies;
@@ -224,7 +224,7 @@ composer examples:check
 composer public:check
 composer archive:check
 composer check
-composer parity:check -- ../unifyport-sdk-node
+composer parity:check -- ../UnifyPort-SDK-Nodejs
 ```
 
 `examples/offline-demo.php` is executed by `composer examples:check` and never makes a network request.
@@ -241,3 +241,7 @@ composer parity:check -- ../unifyport-sdk-node
 ## Contributing
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before changing the contract, generator, runtime, or public API. Security reports should follow [SECURITY.md](SECURITY.md).
+
+The synchronization baseline is approved Node source `ce60499`, not a claim that npm has released these capabilities. No package is published by this update. See [Contract update](docs/contract-update.md).
+
+[Facebook channel support](docs/facebook.md) covers session authorization, supported messages and standard callbacks.
