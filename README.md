@@ -6,6 +6,9 @@ Official PHP 8.2+ SDK for the public UnifyPort Device API. It exposes all 78 pub
 
 The SDK tracks approved public Node source `ce60499` (`0.4.0` package metadata at that commit). The OpenAPI contract and generated parity manifest are committed so future Node changes can be detected automatically.
 
+
+Prepared SDK version: `0.2.0` (unreleased). See [release notes](docs/release-notes.md) and the [migration guide](docs/migration.md).
+
 ## Status and scope
 
 - PHP `8.2+` on a 64-bit runtime;
