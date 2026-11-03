@@ -6,6 +6,9 @@
 
 当前基线对齐已批准的公开 Node 源码 `ce60499`，该 commit 的包版本元数据为 `0.4.0`。仓库提交 OpenAPI 契约和生成的 parity manifest，后续可以自动发现 Node SDK 漂移。
 
+
+当前准备的 SDK 版本为 `0.2.0`，尚未发布。详见[发布说明](docs/zh-CN/release-notes.md)和[迁移指南](docs/zh-CN/migration.md)。
+
 ## 范围
 
 - PHP `8.2+`、64-bit runtime；
